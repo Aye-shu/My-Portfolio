@@ -1,1 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ProMan - Personal Portfolio</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+    <!-- Google Web Fonts (Allowed, not a framework) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet (Allowed, not a framework) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
+    <!-- Custom Styles -->
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="spinner-overlay">
+        <div class="spinner-border"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar fixed-top" id="mainNav">
+        <div class="container nav-container">
+            <a href="index.html" class="navbar-brand d-block d-lg-none">ProMan</a>
+            <button class="navbar-toggler" id="navbarToggler" aria-label="Toggle navigation">
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#skill" class="nav-link">Skills</a>
+                    <a href="#service" class="nav-link">Services</a>
+                </div>
+                <a href="index.html" class="navbar-brand bg-secondary d-none d-lg-block">ProMan</a>
+                <div class="navbar-nav me-auto">
+                    <a href="#project" class="nav-link">Projects</a>
+                    <a href="#team" class="nav-link">Team</a>
+                    <a href="#testimonial" class="nav-link">Testimonial</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Header / Hero Start -->
+    <div class="hero-section" id="home">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h3>I'm</h3>
+                    <h1>Kate Winslet</h1>
+                    <h2 class="typed-text-output"></h2>
+                    <div class="typed-text-hidden">Web Designer, Web Developer, Front End Developer, Apps Designer, Apps Developer</div>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">Download CV</a>
+                        <button class="btn-play" id="videoPlayBtn" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc">
+                            <span></span>
+                        </button>
+                        <h5 class="play-label">Play Video</h5>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="img/profile.png" alt="Profile">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Youtube Video</h3>
+                    <button class="close-modal" id="closeVideoModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="video-wrapper">
+                        <iframe id="videoIframe" src="" allowfullscreen allow="autoplay"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Start -->
+    <div class="section about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-left">
+                    <div class="years-badge">
+                        <h1>15</h1>
+                        <h5>Years</h5>
+                    </div>
+                    <h3>of working experience as a web designer & developer</h3>
+                    <p>Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
+                    <ul class="check-list">
+                        <li><i class="far fa-check-circle"></i> Affordable Prices</li>
+                        <li><i class="far fa-check-circle"></i> High Quality Product</li>
+                        <li><i class="far fa-check-circle"></i> On Time Project Delivery</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+                <div class="about-right">
+                    <div class="about-images">
+                        <img src="img/about-1.jpg" alt="About 1">
+                        <img src="img/about-2.jpg" alt="About 2">
+                    </div>
+                    <div class="stats-row">
+                        <div>
+                            <h5>Happy Clients</h5>
+                            <span class="counter" data-target="1234">0</span>
+                        </div>
+                        <div>
+                            <h5>Projects Completed</h5>
+                            <span class="counter" data-target="1234">0</span>
+                        </div>
+                    </div>
+                    <p>Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam amet diam ipsum clita labore dolor duo clita.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <!-- Skills Start -->
+    <div class="section skills-section" id="skill">
+        <div class="container">
+            <div class="skills-grid">
+                <div class="skills-left">
+                    <h1>Skills & Experience</h1>
+                    <p>Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum clita dolor duo clita sit.</p>
+                    <h3>My Skills</h3>
+                    <div class="skills-wrapper">
+                        <div class="skill">
+                            <div class="skill-label"><span>HTML</span><span>95%</span></div>
+                            <div class="progress"><div class="progress-bar bg-primary" data-width="95"></div></div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-label"><span>CSS</span><span>85%</span></div>
+                            <div class="progress"><div class="progress-bar bg-warning" data-width="85"></div></div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-label"><span>PHP</span><span>90%</span></div>
+                            <div class="progress"><div class="progress-bar bg-danger" data-width="90"></div></div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-label"><span>Javascript</span><span>90%</span></div>
+                            <div class="progress"><div class="progress-bar bg-danger" data-width="90"></div></div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-label"><span>Angular JS</span><span>95%</span></div>
+                            <div class="progress"><div class="progress-bar bg-dark" data-width="95"></div></div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-label"><span>Wordpress</span><span>85%</span></div>
+                            <div class="progress"><div class="progress-bar bg-info" data-width="85"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-right">
+                    <div class="tab-nav">
+                        <button class="tab-btn active" data-tab="exp">Experience</button>
+                        <button class="tab-btn" data-tab="edu">Education</button>
+                    </div>
+                    <div class="tab-content">
+                        <div id="exp" class="tab-pane active">
+                            <div class="exp-grid">
+                                <div><h5>UI Designer</h5><hr><p class="date">2000 - 2045</p><h6>Apex Software Inc</h6></div>
+                                <div><h5>Product Designer</h5><hr><p class="date">2000 - 2045</p><h6>Apex Software Inc</h6></div>
+                                <div><h5>Web Designer</h5><hr><p class="date">2000 - 2045</p><h6>Apex Software Inc</h6></div>
+                                <div><h5>Apps Designer</h5><hr><p class="date">2000 - 2045</p><h6>Apex Software Inc</h6></div>
+                            </div>
+                        </div>
+                        <div id="edu" class="tab-pane">
+                            <div class="exp-grid">
+                                <div><h5>UI Design Course</h5><hr><p class="date">2000 - 2045</p><h6>Cambridge University</h6></div>
+                                <div><h5>IOS Development</h5><hr><p class="date">2000 - 2045</p><h6>Cambridge University</h6></div>
+                                <div><h5>Web Design</h5><hr><p class="date">2000 - 2045</p><h6>Cambridge University</h6></div>
+                                <div><h5>Apps Design</h5><hr><p class="date">2000 - 2045</p><h6>Cambridge University</h6></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Skills End -->
+
+    <!-- Service Start -->
+    <div class="section service-section" id="service">
+        <div class="container">
+            <div class="service-header">
+                <h1>My Services</h1>
+                <a href="#" class="btn btn-primary">Hire Me</a>
+            </div>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="bg-icon"><i class="fa fa-crop-alt"></i></div>
+                    <div><h4>Creative Design</h4><h6>Start from <span class="text-primary">$199</span></h6><p>Stet lorem dolor diam amet vero eos. No stet est diam amet diam ipsum. Clita dolor duo clita sit sed sit dolor eos.</p></div>
+                </div>
+                <div class="service-item">
+                    <div class="bg-icon"><i class="fa fa-code-branch"></i></div>
+                    <div><h4>Graphic Design</h4><h6>Start from <span class="text-primary">$199</span></h6><p>Stet lorem dolor diam amet vero eos. No stet est diam amet diam ipsum. Clita dolor duo clita sit sed sit dolor eos.</p></div>
+                </div>
+                <div class="service-item">
+                    <div class="bg-icon"><i class="fa fa-code"></i></div>
+                    <div><h4>Web Design</h4><h6>Start from <span class="text-primary">$199</span></h6><p>Stet lorem dolor diam amet vero eos. No stet est diam amet diam ipsum. Clita dolor duo clita sit sed sit dolor eos.</p></div>
+                </div>
+                <div class="service-item">
+                    <div class="bg-icon"><i class="fa fa-laptop-code"></i></div>
+                    <div><h4>UI/UX Design</h4><h6>Start from <span class="text-primary">$199</span></h6><p>Stet lorem dolor diam amet vero eos. No stet est diam amet diam ipsum. Clita dolor duo clita sit sed sit dolor eos.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+    <!-- Projects Start -->
+    <div class="section project-section" id="project">
+        <div class="container">
+            <div class="project-header">
+                <h1>My Projects</h1>
+                <ul class="filter-list" id="portfolioFilter">
+                    <li class="active" data-filter="all">All Projects</li>
+                    <li data-filter="ui">UI/UX Design</li>
+                    <li data-filter="graphic">Graphic Design</li>
+                </ul>
+            </div>
+            <div class="project-grid" id="projectGrid">
+                <div class="project-item" data-category="ui">
+                    <img src="img/project-1.jpg" alt="Project">
+                    <div class="project-overlay">
+                        <a href="img/project-1.jpg" class="view-btn"><i class="fa fa-eye"></i></a>
+                        <a href="#"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="project-item" data-category="graphic">
+                    <img src="img/project-2.jpg" alt="Project">
+                    <div class="project-overlay">
+                        <a href="img/project-2.jpg" class="view-btn"><i class="fa fa-eye"></i></a>
+                        <a href="#"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="project-item" data-category="ui">
+                    <img src="img/project-3.jpg" alt="Project">
+                    <div class="project-overlay">
+                        <a href="img/project-3.jpg" class="view-btn"><i class="fa fa-eye"></i></a>
+                        <a href="#"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="project-item" data-category="graphic">
+                    <img src="img/project-4.jpg" alt="Project">
+                    <div class="project-overlay">
+                        <a href="img/project-4.jpg" class="view-btn"><i class="fa fa-eye"></i></a>
+                        <a href="#"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="project-item" data-category="ui">
+                    <img src="img/project-5.jpg" alt="Project">
+                    <div class="project-overlay">
+                        <a href="img/project-5.jpg" class="view-btn"><i class="fa fa-eye"></i></a>
+                        <a href="#"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="project-item" data-category="graphic">
+                    <img src="img/project-6.jpg" alt="Project">
+                    <div class="project-overlay">
+                        <a href="img/project-6.jpg" class="view-btn"><i class="fa fa-eye"></i></a>
+                        <a href="#"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Projects End -->
+
+    <!-- Team Start -->
+    <div class="section team-section" id="team">
+        <div class="container">
+            <div class="team-header">
+                <h1>Team Members</h1>
+                <a href="#" class="btn btn-primary">Contact Us</a>
+            </div>
+            <div class="team-grid">
+                <div class="team-item">
+                    <img src="img/team-1.jpg" alt="Team">
+                    <div class="team-text">
+                        <div><h5>Full Name</h5><span>Designer</span></div>
+                        <i class="fa fa-arrow-right"></i>
+                    </div>
+                </div>
+                <div class="team-item">
+                    <img src="img/team-2.jpg" alt="Team">
+                    <div class="team-text">
+                        <div><h5>Full Name</h5><span>Designer</span></div>
+                        <i class="fa fa-arrow-right"></i>
+                    </div>
+                </div>
+                <div class="team-item">
+                    <img src="img/team-3.jpg" alt="Team">
+                    <div class="team-text">
+                        <div><h5>Full Name</h5><span>Designer</span></div>
+                        <i class="fa fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+    <!-- Testimonial Start -->
+    <div class="section testimonial-section" id="testimonial">
+        <div class="container">
+            <h1 class="text-center">Testimonial</h1>
+            <div class="testimonial-wrapper">
+                <div class="side-images left">
+                    <img src="img/testimonial-1.jpg" alt="">
+                    <img src="img/testimonial-2.jpg" alt="">
+                    <img src="img/testimonial-3.jpg" alt="">
+                </div>
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <div class="testimonial-item active">
+                        <div class="avatar">
+                            <img src="img/testimonial-1.jpg" alt="">
+                            <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+                        </div>
+                        <p>Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
+                        <hr>
+                        <h5>Client Name</h5>
+                        <span>Profession</span>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="avatar">
+                            <img src="img/testimonial-2.jpg" alt="">
+                            <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+                        </div>
+                        <p>Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
+                        <hr>
+                        <h5>Client Name</h5>
+                        <span>Profession</span>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="avatar">
+                            <img src="img/testimonial-3.jpg" alt="">
+                            <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+                        </div>
+                        <p>Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
+                        <hr>
+                        <h5>Client Name</h5>
+                        <span>Profession</span>
+                    </div>
+                </div>
+                <div class="side-images right">
+                    <img src="img/testimonial-1.jpg" alt="">
+                    <img src="img/testimonial-2.jpg" alt="">
+                    <img src="img/testimonial-3.jpg" alt="">
+                </div>
+            </div>
+            <div class="slider-dots" id="sliderDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+    <!-- Contact Start -->
+    <div class="section contact-section" id="contact">
+        <div class="container">
+            <div class="contact-header">
+                <h1>Let's Work Together</h1>
+                <a href="#" class="btn btn-primary">Say Hello</a>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p>My office:</p>
+                    <h3>123 Street, New York, USA</h3>
+                    <hr>
+                    <p>Call me:</p>
+                    <h3>+012 345 6789</h3>
+                    <hr>
+                    <p>Mail me:</p>
+                    <h3>info@example.com</h3>
+                    <hr>
+                    <p>Follow me:</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <p>The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes.</p>
+                    <form id="contactForm">
+                        <input type="text" id="cname" placeholder="Your Name" required>
+                        <input type="email" id="cemail" placeholder="Your Email" required>
+                        <input type="text" id="csubject" placeholder="Subject">
+                        <textarea id="cmessage" rows="4" placeholder="Message" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <div id="formFeedback"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    <!-- Map Start -->
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd" allowfullscreen></iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved.</p>
+            <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a><br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a></p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
