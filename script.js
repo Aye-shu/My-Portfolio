@@ -1,304 +1,204 @@
-(function() {
-    "use strict";
+'use strict';
 
-    // =============================================
-    // 1. SPINNER
-    // =============================================
-    window.addEventListener('load', function() {
-        var spinner = document.getElementById('spinner');
-        if (spinner) spinner.classList.add('hidden');
+/* ==========================================================
+   1. THEME TOGGLE (light / dark, remembered between visits)
+   ========================================================== */
+(function themeToggle() {
+  var root = document.documentElement;
+  var button = document.getElementById('theme-toggle');
+  if (!button) return;
+
+  function setTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    button.setAttribute('aria-pressed', String(theme === 'dark'));
+    try {
+      localStorage.setItem('portfolio-theme', theme);
+    } catch (e) {
+      /* Storage can be blocked; the toggle still works for this visit */
+    }
+  }
+
+  // Sync the button with the theme the <head> script already applied
+  button.setAttribute('aria-pressed', String(root.getAttribute('data-theme') === 'dark'));
+
+  button.addEventListener('click', function () {
+    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+})();
+
+/* ==========================================================
+   2. MOBILE MENU
+   ========================================================== */
+(function mobileMenu() {
+  var button = document.getElementById('menu-toggle');
+  var nav = document.getElementById('site-nav');
+  if (!button || !nav) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('is-open', open);
+    button.setAttribute('aria-expanded', String(open));
+  }
+
+  button.addEventListener('click', function () {
+    setOpen(!nav.classList.contains('is-open'));
+  });
+
+  // Close after choosing a section
+  nav.addEventListener('click', function (event) {
+    if (event.target.closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+      setOpen(false);
+      button.focus();
+    }
+  });
+})();
+
+/* ==========================================================
+   3. SCROLL SPY (highlights the section you are reading)
+   ========================================================== */
+(function scrollSpy() {
+  var nav = document.getElementById('site-nav');
+  if (!nav || !('IntersectionObserver' in window)) return;
+
+  var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+  var sections = links
+    .map(function (link) { return document.querySelector(link.getAttribute('href')); })
+    .filter(Boolean);
+
+  function setActive(id) {
+    links.forEach(function (link) {
+      if (link.getAttribute('href') === '#' + id) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(function (section) { observer.observe(section); });
+})();
+
+/* ==========================================================
+   4. PROJECT FILTER
+   ========================================================== */
+(function projectFilter() {
+  var buttons = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('.project');
+  var status = document.getElementById('filter-status');
+  if (!buttons.length || !cards.length) return;
+
+  buttons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      var filter = button.getAttribute('data-filter');
+      var visible = 0;
+
+      buttons.forEach(function (other) {
+        other.setAttribute('aria-pressed', String(other === button));
+      });
+
+      cards.forEach(function (card) {
+        var show = filter === 'all' || card.getAttribute('data-category') === filter;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+
+      if (status) {
+        status.textContent = 'Showing ' + visible + (visible === 1 ? ' project' : ' projects');
+      }
+    });
+  });
+})();
+
+/* ==========================================================
+   5. CONTACT FORM VALIDATION
+   ========================================================== */
+(function contactForm() {
+  var CONTACT_EMAIL = 'your.email@example.com'; // EDIT: your real email
+
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+
+  var status = document.getElementById('form-status');
+  var counter = document.getElementById('message-count');
+
+  var rules = {
+    name: function (value) {
+      return value.trim().length >= 2 ? '' : 'Enter your name (at least 2 characters).';
+    },
+    email: function (value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+        ? ''
+        : 'Enter a valid email address, like name@example.com.';
+    },
+    message: function (value) {
+      return value.trim().length >= 10 ? '' : 'Write at least 10 characters so I know how to help.';
+    }
+  };
+
+  function check(field) {
+    var input = form.elements[field];
+    var error = document.getElementById(field + '-error');
+    var message = rules[field](input.value);
+    error.textContent = message;
+    input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    return !message;
+  }
+
+  Object.keys(rules).forEach(function (field) {
+    var input = form.elements[field];
+    // Validate when leaving a field, then keep feedback live while typing
+    input.addEventListener('blur', function () { check(field); });
+    input.addEventListener('input', function () {
+      if (input.getAttribute('aria-invalid') === 'true') check(field);
+    });
+  });
+
+  form.elements.message.addEventListener('input', function (event) {
+    counter.textContent = event.target.value.length + ' / 500';
+  });
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    status.textContent = '';
+
+    var firstInvalid = null;
+    Object.keys(rules).forEach(function (field) {
+      if (!check(field) && !firstInvalid) firstInvalid = form.elements[field];
     });
 
-    // =============================================
-    // 2. NAVBAR SCROLL EFFECT
-    // =============================================
-    var navbar = document.getElementById('mainNav');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            navbar.style.display = 'flex';
-        } else {
-            navbar.style.display = 'none';
-        }
-    });
-
-    // =============================================
-    // 3. MOBILE TOGGLE
-    // =============================================
-    var toggler = document.getElementById('navbarToggler');
-    var collapse = document.getElementById('navbarCollapse');
-    toggler.addEventListener('click', function() {
-        collapse.classList.toggle('active');
-    });
-
-    // =============================================
-    // 4. SMOOTH SCROLL & ACTIVE LINK
-    // =============================================
-    var navLinks = document.querySelectorAll('.nav-link');
-    var sections = document.querySelectorAll('.section, .hero-section, #home');
-
-    navLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            var targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            var target = document.querySelector(targetId);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Close mobile menu
-                collapse.classList.remove('active');
-            }
-        });
-    });
-
-    window.addEventListener('scroll', function() {
-        var current = '';
-        sections.forEach(function(section) {
-            var top = section.offsetTop - 100;
-            if (window.scrollY >= top) {
-                current = section.getAttribute('id');
-            }
-        });
-        navLinks.forEach(function(link) {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
-                link.classList.add('active');
-            }
-        });
-    });
-
-    // =============================================
-    // 5. TYPED TEXT EFFECT
-    // =============================================
-    var typedOutput = document.querySelector('.typed-text-output');
-    var typedHidden = document.querySelector('.typed-text-hidden');
-    if (typedOutput && typedHidden) {
-        var strings = typedHidden.textContent.split(', ');
-        var stringIndex = 0;
-        var charIndex = 0;
-        var isDeleting = false;
-
-        function typeEffect() {
-            var currentString = strings[stringIndex];
-            if (!isDeleting) {
-                typedOutput.textContent = currentString.substring(0, charIndex + 1);
-                charIndex++;
-                if (charIndex === currentString.length) {
-                    isDeleting = true;
-                    setTimeout(typeEffect, 2000);
-                    return;
-                }
-                setTimeout(typeEffect, 100);
-            } else {
-                typedOutput.textContent = currentString.substring(0, charIndex);
-                charIndex--;
-                if (charIndex < 0) {
-                    isDeleting = false;
-                    stringIndex = (stringIndex + 1) % strings.length;
-                    setTimeout(typeEffect, 500);
-                    return;
-                }
-                setTimeout(typeEffect, 50);
-            }
-        }
-        typeEffect();
+    if (firstInvalid) {
+      firstInvalid.focus();
+      status.textContent = 'Fix the highlighted fields and send again.';
+      return;
     }
 
-    // =============================================
-    // 6. VIDEO MODAL
-    // =============================================
-    var playBtn = document.getElementById('videoPlayBtn');
-    var modal = document.getElementById('videoModal');
-    var iframe = document.getElementById('videoIframe');
-    var closeModal = document.getElementById('closeVideoModal');
+    var subject = 'Portfolio message from ' + form.elements.name.value.trim();
+    var body = form.elements.message.value.trim() +
+      '\n\nFrom: ' + form.elements.name.value.trim() +
+      ' (' + form.elements.email.value.trim() + ')';
 
-    if (playBtn && modal) {
-        playBtn.addEventListener('click', function() {
-            var src = this.getAttribute('data-src');
-            iframe.src = src + '?autoplay=1&modestbranding=1&showinfo=0';
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    }
+    window.location.href = 'mailto:' + CONTACT_EMAIL +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
 
-    function closeVideo() {
-        modal.classList.remove('active');
-        iframe.src = '';
-        document.body.style.overflow = '';
-    }
-    if (closeModal) closeModal.addEventListener('click', closeVideo);
-    window.addEventListener('click', function(e) {
-        if (e.target === modal) closeVideo();
-    });
+    status.textContent = 'Your email app should open with the message filled in. If it does not, write to ' +
+      CONTACT_EMAIL + '.';
+  });
+})();
 
-    // =============================================
-    // 7. COUNTER UP (Intersection Observer)
-    // =============================================
-    var counters = document.querySelectorAll('.counter');
-    var countersStarted = false;
-
-    var counterObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting && !countersStarted) {
-                countersStarted = true;
-                counters.forEach(function(counter) {
-                    var target = parseInt(counter.getAttribute('data-target'));
-                    var current = 0;
-                    var increment = Math.ceil(target / 100);
-                    function updateCounter() {
-                        if (current < target) {
-                            current += increment;
-                            if (current > target) current = target;
-                            counter.textContent = current;
-                            setTimeout(updateCounter, 20);
-                        } else {
-                            counter.textContent = target;
-                        }
-                    }
-                    updateCounter();
-                });
-            }
-        });
-    }, { threshold: 0.3 });
-
-    var statsRow = document.querySelector('.stats-row');
-    if (statsRow) counterObserver.observe(statsRow);
-
-    // =============================================
-    // 8. SKILLS PROGRESS BAR
-    // =============================================
-    var skillBars = document.querySelectorAll('.progress-bar');
-    var skillsStarted = false;
-
-    var skillsObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting && !skillsStarted) {
-                skillsStarted = true;
-                skillBars.forEach(function(bar) {
-                    var width = bar.getAttribute('data-width');
-                    setTimeout(function() {
-                        bar.style.width = width + '%';
-                    }, 200);
-                });
-            }
-        });
-    }, { threshold: 0.3 });
-
-    var skillsWrapper = document.querySelector('.skills-wrapper');
-    if (skillsWrapper) skillsObserver.observe(skillsWrapper);
-
-    // =============================================
-    // 9. EXPERIENCE / EDUCATION TABS
-    // =============================================
-    var tabBtns = document.querySelectorAll('.tab-btn');
-    tabBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            tabBtns.forEach(function(b) { b.classList.remove('active'); });
-            this.classList.add('active');
-            var tabId = this.getAttribute('data-tab');
-            var panes = document.querySelectorAll('.tab-pane');
-            panes.forEach(function(pane) { pane.classList.remove('active'); });
-            var activePane = document.getElementById(tabId);
-            if (activePane) activePane.classList.add('active');
-        });
-    });
-
-    // =============================================
-    // 10. PORTFOLIO FILTER
-    // =============================================
-    var filterItems = document.querySelectorAll('.filter-list li');
-    var projectItems = document.querySelectorAll('.project-item');
-
-    filterItems.forEach(function(item) {
-        item.addEventListener('click', function() {
-            filterItems.forEach(function(f) { f.classList.remove('active'); });
-            this.classList.add('active');
-            var filter = this.getAttribute('data-filter');
-            projectItems.forEach(function(proj) {
-                var category = proj.getAttribute('data-category');
-                if (filter === 'all' || category === filter) {
-                    proj.style.display = 'block';
-                } else {
-                    proj.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    // =============================================
-    // 11. TESTIMONIAL SLIDER
-    // =============================================
-    var testimonialItems = document.querySelectorAll('.testimonial-item');
-    var dots = document.querySelectorAll('.dot');
-    var currentSlide = 0;
-
-    function showSlide(index) {
-        testimonialItems.forEach(function(item) { item.classList.remove('active'); });
-        dots.forEach(function(dot) { dot.classList.remove('active'); });
-        testimonialItems[index].classList.add('active');
-        dots[index].classList.add('active');
-    }
-
-    dots.forEach(function(dot) {
-        dot.addEventListener('click', function() {
-            currentSlide = parseInt(this.getAttribute('data-index'));
-            showSlide(currentSlide);
-        });
-    });
-
-    // Auto-play
-    setInterval(function() {
-        currentSlide = (currentSlide + 1) % testimonialItems.length;
-        showSlide(currentSlide);
-    }, 5000);
-
-    // =============================================
-    // 12. CONTACT FORM VALIDATION
-    // =============================================
-    var contactForm = document.getElementById('contactForm');
-    var feedback = document.getElementById('formFeedback');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var name = document.getElementById('cname').value.trim();
-            var email = document.getElementById('cemail').value.trim();
-            var message = document.getElementById('cmessage').value.trim();
-
-            if (!name || !email || !message) {
-                feedback.style.display = 'block';
-                feedback.style.color = 'red';
-                feedback.textContent = '⚠️ Please fill in all required fields.';
-                return;
-            }
-            if (!email.includes('@') || !email.includes('.')) {
-                feedback.style.display = 'block';
-                feedback.style.color = 'red';
-                feedback.textContent = '⚠️ Please enter a valid email.';
-                return;
-            }
-
-            feedback.style.display = 'block';
-            feedback.style.color = 'green';
-            feedback.textContent = '✅ Message sent successfully!';
-            contactForm.reset();
-            setTimeout(function() { feedback.style.display = 'none'; }, 5000);
-        });
-    }
-
-    // =============================================
-    // 13. BACK TO TOP
-    // =============================================
-    var backBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backBtn.style.display = 'flex';
-        } else {
-            backBtn.style.display = 'none';
-        }
-    });
-    backBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
+/* ==========================================================
+   6. FOOTER YEAR
+   ========================================================== */
+(function footerYear() {
+  var year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
 })();
