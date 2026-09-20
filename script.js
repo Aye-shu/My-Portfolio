@@ -1,204 +1,542 @@
-'use strict';
-
 /* ==========================================================
-   1. THEME TOGGLE (light / dark, remembered between visits)
+   1. DARK MODE
    ========================================================== */
-(function themeToggle() {
-  var root = document.documentElement;
-  var button = document.getElementById('theme-toggle');
-  if (!button) return;
 
-  function setTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    button.setAttribute('aria-pressed', String(theme === 'dark'));
-    try {
-      localStorage.setItem('portfolio-theme', theme);
-    } catch (e) {
-      /* Storage can be blocked; the toggle still works for this visit */
+(function () {
+
+  const root = document.documentElement;
+  const toggle = document.getElementById("theme-toggle");
+
+  if (!toggle) return;
+
+  function updateToggle() {
+
+    const dark =
+      root.getAttribute("data-theme") === "dark";
+
+    toggle.setAttribute(
+      "aria-pressed",
+      String(dark)
+    );
+
+    const text =
+      toggle.querySelector("span:last-child");
+
+    if (text) {
+      text.textContent =
+        dark ? "Light mode" : "Dark mode";
     }
   }
 
-  // Sync the button with the theme the <head> script already applied
-  button.setAttribute('aria-pressed', String(root.getAttribute('data-theme') === 'dark'));
+  updateToggle();
 
-  button.addEventListener('click', function () {
-    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  toggle.addEventListener("click", function () {
+
+    const current =
+      root.getAttribute("data-theme");
+
+    const next =
+      current === "dark"
+        ? "light"
+        : "dark";
+
+    root.setAttribute(
+      "data-theme",
+      next
+    );
+
+    try {
+      localStorage.setItem(
+        "portfolio-theme",
+        next
+      );
+    } catch (error) {
+      // Ignore storage errors
+    }
+
+    updateToggle();
   });
+
 })();
+
 
 /* ==========================================================
    2. MOBILE MENU
    ========================================================== */
-(function mobileMenu() {
-  var button = document.getElementById('menu-toggle');
-  var nav = document.getElementById('site-nav');
-  if (!button || !nav) return;
 
-  function setOpen(open) {
-    nav.classList.toggle('is-open', open);
-    button.setAttribute('aria-expanded', String(open));
+(function () {
+
+  const menuButton =
+    document.getElementById("menu-toggle");
+
+  const nav =
+    document.getElementById("site-nav");
+
+  if (!menuButton || !nav) return;
+
+
+  function closeMenu() {
+
+    nav.classList.remove("is-open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
   }
 
-  button.addEventListener('click', function () {
-    setOpen(!nav.classList.contains('is-open'));
-  });
 
-  // Close after choosing a section
-  nav.addEventListener('click', function (event) {
-    if (event.target.closest('a')) setOpen(false);
-  });
+  function toggleMenu() {
 
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-      setOpen(false);
-      button.focus();
+    const open =
+      nav.classList.toggle("is-open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
+  }
+
+
+  menuButton.addEventListener(
+    "click",
+    toggleMenu
+  );
+
+
+  nav.querySelectorAll("a").forEach(
+    function (link) {
+
+      link.addEventListener(
+        "click",
+        closeMenu
+      );
+
     }
-  });
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+
+    }
+  );
+
 })();
+
 
 /* ==========================================================
-   3. SCROLL SPY (highlights the section you are reading)
+   3. SCROLL SPY
    ========================================================== */
-(function scrollSpy() {
-  var nav = document.getElementById('site-nav');
-  if (!nav || !('IntersectionObserver' in window)) return;
 
-  var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
-  var sections = links
-    .map(function (link) { return document.querySelector(link.getAttribute('href')); })
-    .filter(Boolean);
+(function () {
 
-  function setActive(id) {
-    links.forEach(function (link) {
-      if (link.getAttribute('href') === '#' + id) {
-        link.setAttribute('aria-current', 'location');
-      } else {
-        link.removeAttribute('aria-current');
-      }
-    });
+  const sections =
+    document.querySelectorAll(
+      "main section[id]"
+    );
+
+  const links =
+    document.querySelectorAll(
+      ".site-nav a"
+    );
+
+  if (!sections.length || !links.length) {
+    return;
   }
 
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) setActive(entry.target.id);
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
 
-  sections.forEach(function (section) { observer.observe(section); });
+  const observer =
+    new IntersectionObserver(
+      function (entries) {
+
+        entries.forEach(
+          function (entry) {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            links.forEach(
+              function (link) {
+
+                link.removeAttribute(
+                  "aria-current"
+                );
+
+                if (
+                  link.getAttribute("href") ===
+                  "#" + entry.target.id
+                ) {
+
+                  link.setAttribute(
+                    "aria-current",
+                    "page"
+                  );
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+      },
+      {
+        rootMargin:
+          "-35% 0px -55% 0px"
+      }
+    );
+
+
+  sections.forEach(
+    function (section) {
+      observer.observe(section);
+    }
+  );
+
 })();
+
 
 /* ==========================================================
    4. PROJECT FILTER
    ========================================================== */
-(function projectFilter() {
-  var buttons = document.querySelectorAll('.filter-btn');
-  var cards = document.querySelectorAll('.project');
-  var status = document.getElementById('filter-status');
-  if (!buttons.length || !cards.length) return;
 
-  buttons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      var filter = button.getAttribute('data-filter');
-      var visible = 0;
+(function () {
 
-      buttons.forEach(function (other) {
-        other.setAttribute('aria-pressed', String(other === button));
-      });
+  const buttons =
+    document.querySelectorAll(
+      ".filter-btn"
+    );
 
-      cards.forEach(function (card) {
-        var show = filter === 'all' || card.getAttribute('data-category') === filter;
-        card.hidden = !show;
-        if (show) visible += 1;
-      });
+  const projects =
+    document.querySelectorAll(
+      ".project"
+    );
 
-      if (status) {
-        status.textContent = 'Showing ' + visible + (visible === 1 ? ' project' : ' projects');
-      }
-    });
-  });
-})();
+  const status =
+    document.getElementById(
+      "filter-status"
+    );
 
-/* ==========================================================
-   5. CONTACT FORM VALIDATION
-   ========================================================== */
-(function contactForm() {
-  var CONTACT_EMAIL = 'your.email@example.com'; // EDIT: your real email
 
-  var form = document.getElementById('contact-form');
-  if (!form) return;
-
-  var status = document.getElementById('form-status');
-  var counter = document.getElementById('message-count');
-
-  var rules = {
-    name: function (value) {
-      return value.trim().length >= 2 ? '' : 'Enter your name (at least 2 characters).';
-    },
-    email: function (value) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
-        ? ''
-        : 'Enter a valid email address, like name@example.com.';
-    },
-    message: function (value) {
-      return value.trim().length >= 10 ? '' : 'Write at least 10 characters so I know how to help.';
-    }
-  };
-
-  function check(field) {
-    var input = form.elements[field];
-    var error = document.getElementById(field + '-error');
-    var message = rules[field](input.value);
-    error.textContent = message;
-    input.setAttribute('aria-invalid', message ? 'true' : 'false');
-    return !message;
+  if (!buttons.length || !projects.length) {
+    return;
   }
 
-  Object.keys(rules).forEach(function (field) {
-    var input = form.elements[field];
-    // Validate when leaving a field, then keep feedback live while typing
-    input.addEventListener('blur', function () { check(field); });
-    input.addEventListener('input', function () {
-      if (input.getAttribute('aria-invalid') === 'true') check(field);
-    });
-  });
 
-  form.elements.message.addEventListener('input', function (event) {
-    counter.textContent = event.target.value.length + ' / 500';
-  });
+  buttons.forEach(
+    function (button) {
 
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    status.textContent = '';
+      button.addEventListener(
+        "click",
+        function () {
 
-    var firstInvalid = null;
-    Object.keys(rules).forEach(function (field) {
-      if (!check(field) && !firstInvalid) firstInvalid = form.elements[field];
-    });
+          const filter =
+            button.dataset.filter;
 
-    if (firstInvalid) {
-      firstInvalid.focus();
-      status.textContent = 'Fix the highlighted fields and send again.';
-      return;
+
+          buttons.forEach(
+            function (item) {
+
+              item.setAttribute(
+                "aria-pressed",
+                String(item === button)
+              );
+
+            }
+          );
+
+
+          let visibleCount = 0;
+
+
+          projects.forEach(
+            function (project) {
+
+              const category =
+                project.dataset.category;
+
+
+              const show =
+                filter === "all" ||
+                category === filter;
+
+
+              project.hidden = !show;
+
+
+              if (show) {
+                visibleCount++;
+              }
+
+            }
+          );
+
+
+          if (status) {
+
+            status.textContent =
+              visibleCount +
+              " project" +
+              (visibleCount === 1 ? "" : "s") +
+              " displayed.";
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+})();
+
+
+/* ==========================================================
+   5. CONTACT FORM
+   ========================================================== */
+
+(function () {
+
+  const form =
+    document.getElementById(
+      "contact-form"
+    );
+
+  if (!form) return;
+
+
+  const nameInput =
+    document.getElementById("name");
+
+  const emailInput =
+    document.getElementById("email");
+
+  const messageInput =
+    document.getElementById("message");
+
+  const nameError =
+    document.getElementById("name-error");
+
+  const emailError =
+    document.getElementById("email-error");
+
+  const messageError =
+    document.getElementById("message-error");
+
+  const messageCount =
+    document.getElementById("message-count");
+
+  const status =
+    document.getElementById("form-status");
+
+
+  const CONTACT_EMAIL =
+    "your.email@example.com";
+
+
+  /* Character counter */
+
+  function updateCounter() {
+
+    const length =
+      messageInput.value.length;
+
+    messageCount.textContent =
+      length + " / 500";
+  }
+
+
+  messageInput.addEventListener(
+    "input",
+    updateCounter
+  );
+
+
+  updateCounter();
+
+
+  /* Clear errors */
+
+  function clearErrors() {
+
+    nameError.textContent = "";
+
+    emailError.textContent = "";
+
+    messageError.textContent = "";
+
+    status.textContent = "";
+
+    nameInput.removeAttribute(
+      "aria-invalid"
+    );
+
+    emailInput.removeAttribute(
+      "aria-invalid"
+    );
+
+    messageInput.removeAttribute(
+      "aria-invalid"
+    );
+  }
+
+
+  /* Validate */
+
+  function validate() {
+
+    clearErrors();
+
+    let valid = true;
+
+
+    const name =
+      nameInput.value.trim();
+
+
+    const email =
+      emailInput.value.trim();
+
+
+    const message =
+      messageInput.value.trim();
+
+
+    if (name.length < 2) {
+
+      nameError.textContent =
+        "Please enter your name.";
+
+      nameInput.setAttribute(
+        "aria-invalid",
+        "true"
+      );
+
+      valid = false;
     }
 
-    var subject = 'Portfolio message from ' + form.elements.name.value.trim();
-    var body = form.elements.message.value.trim() +
-      '\n\nFrom: ' + form.elements.name.value.trim() +
-      ' (' + form.elements.email.value.trim() + ')';
 
-    window.location.href = 'mailto:' + CONTACT_EMAIL +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(body);
+    const emailPattern =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    status.textContent = 'Your email app should open with the message filled in. If it does not, write to ' +
-      CONTACT_EMAIL + '.';
-  });
+
+    if (!emailPattern.test(email)) {
+
+      emailError.textContent =
+        "Please enter a valid email.";
+
+      emailInput.setAttribute(
+        "aria-invalid",
+        "true"
+      );
+
+      valid = false;
+    }
+
+
+    if (message.length < 10) {
+
+      messageError.textContent =
+        "Message should contain at least 10 characters.";
+
+      messageInput.setAttribute(
+        "aria-invalid",
+        "true"
+      );
+
+      valid = false;
+    }
+
+
+    return {
+      valid,
+      name,
+      email,
+      message
+    };
+  }
+
+
+  /* Submit */
+
+  form.addEventListener(
+    "submit",
+    function (event) {
+
+      event.preventDefault();
+
+
+      const result =
+        validate();
+
+
+      if (!result.valid) {
+
+        status.textContent =
+          "Please correct the highlighted fields.";
+
+        return;
+      }
+
+
+      const subject =
+        encodeURIComponent(
+          "Portfolio message from " +
+          result.name
+        );
+
+
+      const body =
+        encodeURIComponent(
+          "Name: " +
+          result.name +
+          "\n" +
+          "Email: " +
+          result.email +
+          "\n\n" +
+          result.message
+        );
+
+
+      window.location.href =
+        "mailto:" +
+        CONTACT_EMAIL +
+        "?subject=" +
+        subject +
+        "&body=" +
+        body;
+
+
+      status.textContent =
+        "Opening your email application...";
+    }
+  );
+
 })();
+
 
 /* ==========================================================
    6. FOOTER YEAR
    ========================================================== */
-(function footerYear() {
-  var year = document.getElementById('year');
-  if (year) year.textContent = new Date().getFullYear();
+
+(function () {
+
+  const year =
+    document.getElementById("year");
+
+  if (year) {
+
+    year.textContent =
+      new Date().getFullYear();
+
+  }
+
 })();

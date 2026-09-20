@@ -2,248 +2,1004 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name | Web developer portfolio</title>
-  <meta name="description" content="Portfolio of Your Name, a university student who builds websites that solve everyday problems.">
-  <meta name="theme-color" content="#0B6E69">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B6E69'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EYN%3C/text%3E%3C/svg%3E">
 
-  <!-- Apply saved theme before first paint to avoid a flash -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Your Name | Personal Portfolio</title>
+
+  <meta
+    name="description"
+    content="Personal portfolio of Your Name - web developer and university student."
+  >
+
+  <meta name="theme-color" content="#ffafcc">
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ffafcc'/%3E%3Ctext x='32' y='43' font-size='28' font-family='Arial' font-weight='700' text-anchor='middle' fill='%235b3041'%3EYN%3C/text%3E%3C/svg%3E"
+  >
+
+  <!-- Prevent theme flash -->
   <script>
     (function () {
-      var root = document.documentElement;
-      root.classList.add('js');
+      const root = document.documentElement;
+
+      root.classList.add("js");
+
       try {
-        var theme = localStorage.getItem('portfolio-theme');
+        let theme = localStorage.getItem("portfolio-theme");
+
         if (!theme) {
-          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          theme =
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
         }
-        root.setAttribute('data-theme', theme);
-      } catch (e) {
-        root.setAttribute('data-theme', 'light');
+
+        root.setAttribute("data-theme", theme);
+      } catch (error) {
+        root.setAttribute("data-theme", "light");
       }
     })();
   </script>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- Decorative background -->
+  <div class="background-decoration decoration-one"></div>
+  <div class="background-decoration decoration-two"></div>
+  <div class="background-decoration decoration-three"></div>
+
   <a class="skip" href="#main">Skip to main content</a>
 
-  <header class="site-header">
-    <!-- EDIT: your name -->
-    <a class="brand" href="#home" aria-label="Your Name, back to top">Your Name</a>
+  <!-- ================= HEADER / SIDEBAR ================= -->
 
-    <nav id="site-nav" class="site-nav" aria-label="Main">
+  <header class="site-header">
+
+    <a class="brand" href="#home" aria-label="Your Name, back to top">
+      <span class="brand-icon">YN</span>
+      <span>Your Name</span>
+    </a>
+
+    <div class="sidebar-line"></div>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+        <li>
+          <a href="#home">
+            <span class="nav-number">01</span>
+            <span>Home</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#about">
+            <span class="nav-number">02</span>
+            <span>About</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#skills">
+            <span class="nav-number">03</span>
+            <span>Skills</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#projects">
+            <span class="nav-number">04</span>
+            <span>Projects</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#experience">
+            <span class="nav-number">05</span>
+            <span>Experience</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#contact">
+            <span class="nav-number">06</span>
+            <span>Contact</span>
+          </a>
+        </li>
+
       </ul>
+
     </nav>
 
     <div class="header-actions">
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-pressed="false"
+      >
         <span class="switch" aria-hidden="true"></span>
         <span>Dark mode</span>
       </button>
-      <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+      <button
+        id="menu-toggle"
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        ☰
+      </button>
+
     </div>
+
   </header>
 
+
+  <!-- ================= MAIN ================= -->
+
   <main id="main">
-    <!-- HOME -->
-    <section id="home" class="hero" aria-labelledby="hero-title">
-      <h1 id="hero-title"><span>Hi, I'm</span> <span>Your Name.</span></h1>
-      <p class="hero-lead">I'm a university student who builds websites that solve everyday problems, like getting to class on time.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#projects">See my projects</a>
-        <a class="btn btn-ghost" href="#contact">Send a message</a>
+
+    <!-- ================= HERO ================= -->
+
+    <section
+      id="home"
+      class="hero glass-section"
+      aria-labelledby="hero-title"
+    >
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Available for opportunities
+        </div>
+
+        <p class="hero-small-title">
+          Hello, I'm
+        </p>
+
+        <h1 id="hero-title">
+          <span>Your</span>
+          <span class="hero-name">Name<span class="pink-dot">.</span></span>
+        </h1>
+
+        <p class="hero-role">
+          Web Developer · Student · Creative Thinker
+        </p>
+
+        <p class="hero-lead">
+          I create clean, responsive and user-friendly websites
+          that turn everyday ideas into useful digital experiences.
+        </p>
+
+        <div class="hero-actions">
+
+          <a class="btn btn-primary" href="#projects">
+            Explore My Work
+            <span>↗</span>
+          </a>
+
+          <a class="btn btn-ghost" href="#contact">
+            Let's Talk
+          </a>
+
+        </div>
+
+        <div class="hero-social-text">
+          <span>Scroll to explore</span>
+          <span class="scroll-line"></span>
+        </div>
+
       </div>
 
-      <!-- EDIT: replace the bracketed text -->
-      <dl class="now">
-        <div><dt>Studying</dt><dd>[Your degree] at [Your university]</dd></div>
-        <div><dt>Building</dt><dd>A campus bus booking website</dd></div>
-        <div><dt>Learning</dt><dd>[Your next skill]</dd></div>
-      </dl>
+
+      <!-- Hero visual -->
+
+      <div class="hero-visual">
+
+        <div class="hero-circle"></div>
+
+        <div class="hero-card">
+
+          <div class="hero-card-top">
+            <span class="mini-label">PORTFOLIO</span>
+            <span class="mini-heart">♡</span>
+          </div>
+
+          <div class="avatar-large">
+            YN
+          </div>
+
+          <h2>Your Name</h2>
+
+          <p>
+            Web Developer
+          </p>
+
+          <div class="hero-card-bottom">
+
+            <div>
+              <strong>HTML</strong>
+              <span>CSS · JS</span>
+            </div>
+
+            <div class="card-arrow">
+              ↗
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="floating-badge badge-one">
+          ✦ Creative
+        </div>
+
+        <div class="floating-badge badge-two">
+          ♡ Code
+        </div>
+
+      </div>
+
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section" aria-labelledby="about-title">
-      <h2 id="about-title">About me</h2>
+
+    <!-- ================= ABOUT ================= -->
+
+    <section
+      id="about"
+      class="section glass-section"
+      aria-labelledby="about-title"
+    >
+
+      <div class="section-heading">
+
+        <span class="section-number">02</span>
+
+        <div>
+          <p class="section-label">GET TO KNOW ME</p>
+          <h2 id="about-title">About me<span class="heading-dot">.</span></h2>
+        </div>
+
+      </div>
+
       <div class="about">
-        <!-- EDIT: swap this monogram for your photo: <img class="avatar" src="img/me.jpg" alt="Photo of Your Name"> -->
-        <div class="avatar" aria-hidden="true">YN</div>
-        <div>
-          <p>I'm [Your Name], a [year] student studying [your degree] at [your university]. I like turning small, everyday frustrations into working websites.</p>
-          <p>I started with HTML and CSS, then added JavaScript to make pages respond to people. I care about clear layouts, readable text and pages that work on any screen.</p>
-          <p>Outside class, I [your hobby or interest].</p>
+
+        <div class="about-visual">
+
+          <div class="about-frame">
+
+            <div class="avatar">
+              YN
+            </div>
+
+            <span class="about-decoration">♡</span>
+
+          </div>
+
         </div>
+
+
+        <div class="about-content">
+
+          <p class="about-intro">
+            I'm <strong>Your Name</strong>, a university student who
+            enjoys turning small everyday problems into simple,
+            useful websites.
+          </p>
+
+          <p>
+            I started with HTML and CSS and gradually learned
+            JavaScript to create interactive web experiences.
+            I care about clean layouts, readable content,
+            accessibility and responsive design.
+          </p>
+
+          <p>
+            Outside my studies, I enjoy learning new technologies,
+            experimenting with creative designs and working on
+            personal projects.
+          </p>
+
+          <div class="about-info">
+
+            <div>
+              <span>Name</span>
+              <strong>Your Name</strong>
+            </div>
+
+            <div>
+              <span>Degree</span>
+              <strong>Your Degree</strong>
+            </div>
+
+            <div>
+              <span>University</span>
+              <strong>Your University</strong>
+            </div>
+
+            <div>
+              <span>Location</span>
+              <strong>Your City</strong>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
+
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="section" aria-labelledby="skills-title">
-      <h2 id="skills-title">Skills</h2>
+
+    <!-- ================= SKILLS ================= -->
+
+    <section
+      id="skills"
+      class="section glass-section"
+      aria-labelledby="skills-title"
+    >
+
+      <div class="section-heading">
+
+        <span class="section-number">03</span>
+
+        <div>
+          <p class="section-label">WHAT I CAN DO</p>
+          <h2 id="skills-title">Skills<span class="heading-dot">.</span></h2>
+        </div>
+
+      </div>
+
+
       <div class="skills-grid">
-        <div>
-          <h3>What I use</h3>
-          <ul class="skill-list">
-            <li>HTML5 and semantic markup</li>
-            <li>CSS3, Flexbox and Grid</li>
-            <li>JavaScript (DOM and events)</li>
-            <li>Responsive design</li>
-            <li>Git and GitHub</li>
-          </ul>
+
+        <div class="skills-column">
+
+          <h3>My toolkit</h3>
+
+          <div class="skill-item">
+            <div class="skill-top">
+              <span>HTML5</span>
+              <span>90%</span>
+            </div>
+
+            <div class="skill-bar">
+              <span style="width: 90%"></span>
+            </div>
+          </div>
+
+
+          <div class="skill-item">
+            <div class="skill-top">
+              <span>CSS3</span>
+              <span>85%</span>
+            </div>
+
+            <div class="skill-bar">
+              <span style="width: 85%"></span>
+            </div>
+          </div>
+
+
+          <div class="skill-item">
+            <div class="skill-top">
+              <span>JavaScript</span>
+              <span>80%</span>
+            </div>
+
+            <div class="skill-bar">
+              <span style="width: 80%"></span>
+            </div>
+          </div>
+
+
+          <div class="skill-item">
+            <div class="skill-top">
+              <span>Responsive Design</span>
+              <span>85%</span>
+            </div>
+
+            <div class="skill-bar">
+              <span style="width: 85%"></span>
+            </div>
+          </div>
+
         </div>
-        <div>
-          <h3>What I'm learning</h3>
+
+
+        <div class="skills-card">
+
+          <span class="skills-card-icon">✦</span>
+
+          <h3>Currently learning</h3>
+
           <ul class="skill-list">
-            <li>[Add a skill]</li>
-            <li>[Add a skill]</li>
-            <li>[Add a skill]</li>
+
+            <li>
+              <span>01</span>
+              Git & GitHub
+            </li>
+
+            <li>
+              <span>02</span>
+              UI / UX Design
+            </li>
+
+            <li>
+              <span>03</span>
+              Advanced JavaScript
+            </li>
+
+            <li>
+              <span>04</span>
+              Web Accessibility
+            </li>
+
           </ul>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section" aria-labelledby="projects-title">
-      <h2 id="projects-title">Projects</h2>
 
-      <div class="filters" role="group" aria-label="Filter projects">
-        <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
-        <button class="filter-btn" type="button" data-filter="web-app" aria-pressed="false">Web apps</button>
-        <button class="filter-btn" type="button" data-filter="practice" aria-pressed="false">Practice</button>
+    <!-- ================= PROJECTS ================= -->
+
+    <section
+      id="projects"
+      class="section glass-section"
+      aria-labelledby="projects-title"
+    >
+
+      <div class="section-heading">
+
+        <span class="section-number">04</span>
+
+        <div>
+          <p class="section-label">MY RECENT WORK</p>
+          <h2 id="projects-title">
+            Selected projects<span class="heading-dot">.</span>
+          </h2>
+        </div>
+
       </div>
-      <p id="filter-status" class="sr-only" role="status"></p>
+
+
+      <div
+        class="filters"
+        role="group"
+        aria-label="Filter projects"
+      >
+
+        <button
+          class="filter-btn"
+          type="button"
+          data-filter="all"
+          aria-pressed="true"
+        >
+          All
+        </button>
+
+        <button
+          class="filter-btn"
+          type="button"
+          data-filter="web-app"
+          aria-pressed="false"
+        >
+          Web apps
+        </button>
+
+        <button
+          class="filter-btn"
+          type="button"
+          data-filter="practice"
+          aria-pressed="false"
+        >
+          Practice
+        </button>
+
+      </div>
+
+      <p
+        id="filter-status"
+        class="sr-only"
+        role="status"
+      ></p>
+
 
       <div class="project-grid">
-        <!-- EDIT: links and details -->
-        <article class="project project--featured" data-category="web-app">
-          <h3>Campus bus booking</h3>
-          <p>Students at my university have one morning bus and one fixed evening return, which doesn't fit an open-credit timetable. This website lets students enter their class schedule, pick a matching trip, choose a seat on a live seat map and track the bus.</p>
-          <ul class="project-meta" aria-label="Technologies">
-            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>In progress</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/your-username/bus-booking">Source code</a>
-            <a href="#">Live demo</a>
+
+
+        <!-- Project 1 -->
+
+        <article
+          class="project project--featured"
+          data-category="web-app"
+        >
+
+          <div class="project-image project-image-one">
+
+            <span>01</span>
+
+            <div class="project-shape">
+              BUS
+            </div>
+
           </div>
+
+
+          <div class="project-content">
+
+            <span class="project-type">
+              WEB APPLICATION
+            </span>
+
+            <h3>Campus Bus Booking</h3>
+
+            <p>
+              A website that helps university students choose
+              suitable bus trips, select seats and manage their
+              campus transportation.
+            </p>
+
+            <ul class="project-meta">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>In progress</li>
+            </ul>
+
+            <div class="project-links">
+
+              <a href="https://github.com/your-username/bus-booking">
+                Source code ↗
+              </a>
+
+              <a href="#">
+                Live demo ↗
+              </a>
+
+            </div>
+
+          </div>
+
         </article>
 
-        <article class="project" data-category="web-app">
-          <h3>Your second project</h3>
-          <p>Describe what it does and who it helps in two sentences. Name the hardest problem you solved.</p>
-          <ul class="project-meta" aria-label="Technologies">
-            <li>HTML</li><li>CSS</li><li>JavaScript</li>
-          </ul>
-          <div class="project-links">
-            <a href="#">Source code</a>
-            <a href="#">Live demo</a>
+
+        <!-- Project 2 -->
+
+        <article
+          class="project"
+          data-category="web-app"
+        >
+
+          <div class="project-image project-image-two">
+            <span>02</span>
+            <div class="project-shape">
+              WEB
+            </div>
           </div>
+
+          <div class="project-content">
+
+            <span class="project-type">
+              WEB PROJECT
+            </span>
+
+            <h3>Your Second Project</h3>
+
+            <p>
+              Describe what your project does, who it helps
+              and the main problem you solved.
+            </p>
+
+            <ul class="project-meta">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+
+            <div class="project-links">
+
+              <a href="#">Source code ↗</a>
+
+              <a href="#">Live demo ↗</a>
+
+            </div>
+
+          </div>
+
         </article>
 
-        <article class="project" data-category="practice">
-          <h3>Your practice project</h3>
-          <p>A smaller exercise, such as a to-do list, a calculator or a layout clone, that shows what you learned.</p>
-          <ul class="project-meta" aria-label="Technologies">
-            <li>HTML</li><li>CSS</li>
-          </ul>
-          <div class="project-links">
-            <a href="#">Source code</a>
+
+        <!-- Project 3 -->
+
+        <article
+          class="project"
+          data-category="practice"
+        >
+
+          <div class="project-image project-image-three">
+            <span>03</span>
+            <div class="project-shape">
+              JS
+            </div>
           </div>
+
+          <div class="project-content">
+
+            <span class="project-type">
+              PRACTICE PROJECT
+            </span>
+
+            <h3>JavaScript Practice</h3>
+
+            <p>
+              A small JavaScript project created to practice
+              DOM manipulation, events and interactive features.
+            </p>
+
+            <ul class="project-meta">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+
+            <div class="project-links">
+
+              <a href="#">Source code ↗</a>
+
+            </div>
+
+          </div>
+
         </article>
+
       </div>
+
     </section>
 
-    <!-- EXPERIENCE AND EDUCATION -->
-    <section id="experience" class="section" aria-labelledby="experience-title">
-      <h2 id="experience-title">Experience and education</h2>
+
+    <!-- ================= EXPERIENCE ================= -->
+
+    <section
+      id="experience"
+      class="section glass-section"
+      aria-labelledby="experience-title"
+    >
+
+      <div class="section-heading">
+
+        <span class="section-number">05</span>
+
+        <div>
+          <p class="section-label">MY JOURNEY</p>
+          <h2 id="experience-title">
+            Experience & education<span class="heading-dot">.</span>
+          </h2>
+        </div>
+
+      </div>
+
+
       <div class="split">
-        <div>
+
+
+        <div class="timeline-box">
+
           <h3>Education</h3>
-          <!-- EDIT: dates, degree, school -->
+
           <ol class="timeline">
+
             <li>
-              <time>[Year] – Present</time>
-              <strong>[Your degree]</strong>
-              <span>[Your university]</span>
+
+              <time>202X – Present</time>
+
+              <strong>
+                Your Degree
+              </strong>
+
+              <span>
+                Your University
+              </span>
+
             </li>
+
+
             <li>
-              <time>[Year] – [Year]</time>
-              <strong>[Higher secondary or equivalent]</strong>
-              <span>[Your college]</span>
+
+              <time>202X – 202X</time>
+
+              <strong>
+                Higher Secondary
+              </strong>
+
+              <span>
+                Your College
+              </span>
+
             </li>
+
           </ol>
+
         </div>
-        <div>
+
+
+        <div class="timeline-box">
+
           <h3>Experience</h3>
+
           <ol class="timeline">
+
             <li>
-              <time>[Year]</time>
-              <strong>[Internship, club role or freelance work]</strong>
-              <span>[Organisation]</span>
+
+              <time>202X</time>
+
+              <strong>
+                Personal Web Project
+              </strong>
+
+              <span>
+                Independent Project
+              </span>
+
             </li>
+
+
             <li>
-              <time>[Year] – Present</time>
-              <strong>Campus bus booking website</strong>
-              <span>Personal project</span>
+
+              <time>202X – Present</time>
+
+              <strong>
+                Campus Bus Booking
+              </strong>
+
+              <span>
+                Personal Project
+              </span>
+
             </li>
+
           </ol>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section" aria-labelledby="contact-title">
-      <h2 id="contact-title">Contact</h2>
-      <div class="contact-grid">
+
+    <!-- ================= CONTACT ================= -->
+
+    <section
+      id="contact"
+      class="section glass-section contact-section"
+      aria-labelledby="contact-title"
+    >
+
+      <div class="section-heading">
+
+        <span class="section-number">06</span>
+
         <div>
-          <p>Have a project, an internship or a question? Send a message and I'll reply by email.</p>
-          <!-- EDIT: your real details -->
-          <ul class="contact-list">
-            <li><strong>Email</strong><a href="mailto:your.email@example.com">your.email@example.com</a></li>
-            <li><strong>GitHub</strong><a href="https://github.com/your-username">github.com/your-username</a></li>
-            <li><strong>Location</strong>[Your city, country]</li>
-          </ul>
+          <p class="section-label">GET IN TOUCH</p>
+          <h2 id="contact-title">
+            Let's work together<span class="heading-dot">.</span>
+          </h2>
         </div>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+
+        <div class="contact-intro">
+
+          <div class="contact-heart">
+            ♡
+          </div>
+
+          <h3>
+            Have an idea?
+            <br>
+            Let's talk.
+          </h3>
+
+          <p>
+            Have a project, internship opportunity or simply
+            want to say hello? Send me a message.
+          </p>
+
+
+          <ul class="contact-list">
+
+            <li>
+
+              <span class="contact-icon">✉</span>
+
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:your.email@example.com">
+                  your.email@example.com
+                </a>
+              </div>
+
+            </li>
+
+
+            <li>
+
+              <span class="contact-icon">⌘</span>
+
+              <div>
+                <strong>GitHub</strong>
+                <a href="https://github.com/your-username">
+                  github.com/your-username
+                </a>
+              </div>
+
+            </li>
+
+
+            <li>
+
+              <span class="contact-icon">⌖</span>
+
+              <div>
+                <strong>Location</strong>
+                <span>Your City, Country</span>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <!-- Contact form -->
 
         <form id="contact-form" novalidate>
+
           <div class="field">
-            <label for="name">Your name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error">
-            <p class="error" id="name-error"></p>
+
+            <label for="name">
+              Your name
+            </label>
+
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+              aria-describedby="name-error"
+              placeholder="Enter your name"
+            >
+
+            <p
+              class="error"
+              id="name-error"
+            ></p>
+
           </div>
+
+
           <div class="field">
-            <label for="email">Your email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error">
-            <p class="error" id="email-error"></p>
+
+            <label for="email">
+              Your email
+            </label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              aria-describedby="email-error"
+              placeholder="you@example.com"
+            >
+
+            <p
+              class="error"
+              id="email-error"
+            ></p>
+
           </div>
+
+
           <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" maxlength="500" required aria-describedby="message-error message-count"></textarea>
-            <p class="error" id="message-error"></p>
-            <p class="hint" id="message-count">0 / 500</p>
+
+            <label for="message">
+              Message
+            </label>
+
+            <textarea
+              id="message"
+              name="message"
+              maxlength="500"
+              required
+              aria-describedby="message-error message-count"
+              placeholder="Tell me about your project..."
+            ></textarea>
+
+            <p
+              class="error"
+              id="message-error"
+            ></p>
+
+            <p
+              class="hint"
+              id="message-count"
+            >
+              0 / 500
+            </p>
+
           </div>
-          <button class="btn btn-primary" type="submit">Send message</button>
-          <p class="form-status" id="form-status" role="status"></p>
+
+
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Send message
+            <span>↗</span>
+          </button>
+
+          <p
+            class="form-status"
+            id="form-status"
+            role="status"
+          ></p>
+
         </form>
+
       </div>
+
     </section>
 
+
+    <!-- ================= FOOTER ================= -->
+
     <footer class="site-footer">
-      <p>&copy; <span id="year">2026</span> Your Name. Built with HTML, CSS and JavaScript.</p>
+
+      <div>
+        <strong>Your Name</strong>
+        <span>Made with HTML · CSS · JavaScript</span>
+      </div>
+
+      <p>
+        © <span id="year">2026</span>
+        Your Name. All rights reserved.
+      </p>
+
     </footer>
+
   </main>
 
+
   <script src="script.js"></script>
+
 </body>
 </html>
