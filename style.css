@@ -561,6 +561,22 @@ svg {
 
 
 /* ==========================================================
+   MOBILE MENU (FIX)
+   ========================================================== */
+
+@media (max-width: 1023px) {
+
+  .site-nav {
+    display: none;
+  }
+
+  .site-nav.is-open {
+    display: block;
+  }
+}
+
+
+/* ==========================================================
    6. DESKTOP SIDEBAR
    ========================================================== */
 
@@ -2788,4 +2804,317 @@ main {
         width: 220px;
         height: 280px;
     }
+}
+
+/* =========================================
+   CONTACT FORM
+========================================= */
+
+.contact-form-wrapper {
+    width: 100%;
+    max-width: 560px;
+}
+
+
+/* Form group */
+
+.form-group {
+    margin-bottom: 26px;
+}
+
+
+/* Labels */
+
+.form-group label {
+    display: block;
+    margin-bottom: 9px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #352536;
+}
+
+
+/* Inputs */
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(190, 100, 145, 0.18);
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    color: #352536;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+
+/* Input */
+
+.form-group input {
+    height: 44px;
+    padding: 0 14px;
+}
+
+
+/* Textarea */
+
+.form-group textarea {
+    min-height: 120px;
+
+    padding: 14px;
+
+    resize: vertical;
+}
+
+
+/* Placeholder */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #8c7482;
+}
+
+
+/* Focus */
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #e76f9b;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    box-shadow:
+        0 0 0 3px rgba(231, 111, 155, 0.12);
+}
+
+
+/* Message bottom area */
+
+.message-bottom {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 6px;
+}
+
+
+/* Character counter */
+
+.character-count {
+    margin-left: auto;
+
+    font-size: 11px;
+
+    color: #8d7481;
+}
+
+
+/* Error */
+
+.form-error {
+    display: block;
+
+    margin-top: 5px;
+
+    min-height: 15px;
+
+    font-size: 11px;
+
+    color: #c43f68;
+}
+
+
+/* Submit button */
+
+.contact-submit-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    min-width: 145px;
+    height: 50px;
+
+    padding: 0 22px;
+
+    border: 2px solid #ed75a3;
+
+    border-radius: 30px;
+
+    background: #f49ac0;
+
+    color: #3d2632;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 0 rgba(221, 92, 139, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Hover */
+
+.contact-submit-btn:hover {
+    transform: translateY(-2px);
+
+    background: #f7a7c9;
+
+    box-shadow:
+        0 7px 15px rgba(221, 92, 139, 0.18);
+}
+
+
+/* Click */
+
+.contact-submit-btn:active {
+    transform: translateY(0);
+}
+
+
+/* Disabled */
+
+.contact-submit-btn:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* Status */
+
+.form-status {
+    display: none;
+
+    margin-top: 16px;
+
+    padding: 12px 15px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* Success */
+
+.form-status.success {
+    display: block;
+
+    background: rgba(174, 235, 195, 0.35);
+
+    border: 1px solid rgba(80, 170, 110, 0.25);
+
+    color: #34734a;
+}
+
+
+/* Error */
+
+.form-status.error {
+    display: block;
+
+    background: rgba(255, 180, 190, 0.3);
+
+    border: 1px solid rgba(190, 70, 95, 0.2);
+
+    color: #a63d57;
+}
+
+
+/* Hidden anti-spam field */
+
+.hidden-field {
+    position: absolute !important;
+
+    left: -9999px !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    opacity: 0 !important;
+}
+
+
+/* =========================================
+   CONTACT FORM - RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .contact-form-wrapper {
+        max-width: 100%;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+    .contact-submit-btn {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================
+   CONTACT FORM - DARK MODE FIX
+========================================= */
+
+:root[data-theme="dark"] .form-group label {
+    color: var(--ink);
+}
+
+:root[data-theme="dark"] .form-group input,
+:root[data-theme="dark"] .form-group textarea {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--ink);
+    border-color: rgba(255, 175, 204, 0.22);
+}
+
+:root[data-theme="dark"] .form-group input::placeholder,
+:root[data-theme="dark"] .form-group textarea::placeholder {
+    color: var(--muted);
+}
+
+:root[data-theme="dark"] .character-count {
+    color: var(--muted);
+}
+
+:root[data-theme="dark"] .contact-submit-btn {
+    background: #ffafcc;
+    border-color: #ff8fba;
+    color: #3d2632;
 }

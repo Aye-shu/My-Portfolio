@@ -299,230 +299,272 @@
 })();
 
 
-/* ==========================================================
-   5. CONTACT FORM
-   ========================================================== */
+/* =========================================
+   CONTACT FORM - FORMSPREE
+========================================= */
 
-(function () {
+const contactForm = document.getElementById("contact-form");
 
-  const form =
-    document.getElementById(
-      "contact-form"
-    );
+if (contactForm) {
 
-  if (!form) return;
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
 
+    const nameError = document.getElementById("name-error");
+    const emailError = document.getElementById("email-error");
+    const messageError = document.getElementById("message-error");
 
-  const nameInput =
-    document.getElementById("name");
+    const characterCount = document.getElementById("character-count");
 
-  const emailInput =
-    document.getElementById("email");
+    const submitButton = document.getElementById("contact-submit");
+    const submitText = document.getElementById("submit-text");
+    const submitArrow = document.getElementById("submit-arrow");
 
-  const messageInput =
-    document.getElementById("message");
-
-  const nameError =
-    document.getElementById("name-error");
-
-  const emailError =
-    document.getElementById("email-error");
-
-  const messageError =
-    document.getElementById("message-error");
-
-  const messageCount =
-    document.getElementById("message-count");
-
-  const status =
-    document.getElementById("form-status");
+    const formStatus = document.getElementById("form-status");
 
 
-  const CONTACT_EMAIL =
-    "your.email@example.com";
+    /* =========================================
+       CHARACTER COUNTER
+    ========================================= */
+
+    messageInput.addEventListener("input", function () {
+
+        characterCount.textContent = messageInput.value.length;
+
+    });
 
 
-  /* Character counter */
+    /* =========================================
+       CLEAR ERROR WHEN USER TYPES
+    ========================================= */
 
-  function updateCounter() {
+    nameInput.addEventListener("input", function () {
+        nameError.textContent = "";
+    });
 
-    const length =
-      messageInput.value.length;
+    emailInput.addEventListener("input", function () {
+        emailError.textContent = "";
+    });
 
-    messageCount.textContent =
-      length + " / 500";
-  }
-
-
-  messageInput.addEventListener(
-    "input",
-    updateCounter
-  );
-
-
-  updateCounter();
+    messageInput.addEventListener("input", function () {
+        messageError.textContent = "";
+    });
 
 
-  /* Clear errors */
+    /* =========================================
+       FORM SUBMISSION
+    ========================================= */
 
-  function clearErrors() {
+    contactForm.addEventListener("submit", async function (event) {
 
-    nameError.textContent = "";
-
-    emailError.textContent = "";
-
-    messageError.textContent = "";
-
-    status.textContent = "";
-
-    nameInput.removeAttribute(
-      "aria-invalid"
-    );
-
-    emailInput.removeAttribute(
-      "aria-invalid"
-    );
-
-    messageInput.removeAttribute(
-      "aria-invalid"
-    );
-  }
+        event.preventDefault();
 
 
-  /* Validate */
+        /* Clear previous messages */
 
-  function validate() {
+        nameError.textContent = "";
+        emailError.textContent = "";
+        messageError.textContent = "";
 
-    clearErrors();
-
-    let valid = true;
-
-
-    const name =
-      nameInput.value.trim();
+        formStatus.className = "form-status";
+        formStatus.textContent = "";
 
 
-    const email =
-      emailInput.value.trim();
+        /* Get values */
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
 
 
-    const message =
-      messageInput.value.trim();
+        /* =========================================
+           BASIC VALIDATION
+        ========================================= */
+
+        let isValid = true;
 
 
-    if (name.length < 2) {
+        /* Name validation */
 
-      nameError.textContent =
-        "Please enter your name.";
+        if (name === "") {
 
-      nameInput.setAttribute(
-        "aria-invalid",
-        "true"
-      );
+            nameError.textContent = "Please enter your name.";
 
-      valid = false;
+            isValid = false;
+        }
+
+
+        /* Email validation */
+
+        if (email === "") {
+
+            emailError.textContent = "Please enter your email.";
+
+            isValid = false;
+
+        } else if (!isValidEmail(email)) {
+
+            emailError.textContent = "Please enter a valid email address.";
+
+            isValid = false;
+        }
+
+
+        /* Message validation */
+
+        if (message === "") {
+
+            messageError.textContent = "Please enter your message.";
+
+            isValid = false;
+
+        } else if (message.length < 10) {
+
+            messageError.textContent =
+                "Please write at least 10 characters.";
+
+            isValid = false;
+        }
+
+
+        /* Stop if validation failed */
+
+        if (!isValid) {
+            return;
+        }
+
+
+        /* =========================================
+           SHOW SENDING STATE
+        ========================================= */
+
+        submitButton.disabled = true;
+
+        submitText.textContent = "Sending...";
+        submitArrow.textContent = "•";
+
+
+        try {
+
+            /* =====================================
+               FORMSPREE REQUEST
+
+               IMPORTANT:
+               Replace YOUR_FORM_ID with
+               your actual Formspree form ID.
+            ===================================== */
+
+            const response = await fetch(
+                "https://formspree.io/f/xqpabvqd",
+                {
+                    method: "POST",
+
+                    body: new FormData(contactForm),
+
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }
+            );
+
+
+            /* =====================================
+               SUCCESS
+            ===================================== */
+
+            if (response.ok) {
+
+                formStatus.className =
+                    "form-status success";
+
+                formStatus.textContent =
+                    "✓ Thank you! Your message has been sent successfully.";
+
+
+                /* Clear form */
+
+                contactForm.reset();
+
+                characterCount.textContent = "0";
+
+
+            } else {
+
+                /* =================================
+                   FORMSPREE ERROR
+                ================================= */
+
+                let data = {};
+
+                try {
+                    data = await response.json();
+                } catch (error) {
+                    data = {};
+                }
+
+
+                if (data.errors) {
+
+                    formStatus.textContent =
+                        data.errors
+                            .map(error => error.message)
+                            .join(", ");
+
+                } else {
+
+                    formStatus.textContent =
+                        "Sorry, your message could not be sent. Please try again.";
+
+                }
+
+
+                formStatus.className =
+                    "form-status error";
+            }
+
+
+        } catch (error) {
+
+            /* =====================================
+               NETWORK ERROR
+            ===================================== */
+
+            formStatus.className =
+                "form-status error";
+
+            formStatus.textContent =
+                "Network error. Please check your internet connection and try again.";
+
+        }
+
+
+        /* =========================================
+           RESTORE BUTTON
+        ========================================= */
+
+        submitButton.disabled = false;
+
+        submitText.textContent = "Send message";
+        submitArrow.textContent = "↗";
+
+    });
+
+
+    /* =========================================
+       EMAIL VALIDATION FUNCTION
+    ========================================= */
+
+    function isValidEmail(email) {
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        return emailPattern.test(email);
+
     }
 
-
-    const emailPattern =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-    if (!emailPattern.test(email)) {
-
-      emailError.textContent =
-        "Please enter a valid email.";
-
-      emailInput.setAttribute(
-        "aria-invalid",
-        "true"
-      );
-
-      valid = false;
-    }
-
-
-    if (message.length < 10) {
-
-      messageError.textContent =
-        "Message should contain at least 10 characters.";
-
-      messageInput.setAttribute(
-        "aria-invalid",
-        "true"
-      );
-
-      valid = false;
-    }
-
-
-    return {
-      valid,
-      name,
-      email,
-      message
-    };
-  }
-
-
-  /* Submit */
-
-  form.addEventListener(
-    "submit",
-    function (event) {
-
-      event.preventDefault();
-
-
-      const result =
-        validate();
-
-
-      if (!result.valid) {
-
-        status.textContent =
-          "Please correct the highlighted fields.";
-
-        return;
-      }
-
-
-      const subject =
-        encodeURIComponent(
-          "Portfolio message from " +
-          result.name
-        );
-
-
-      const body =
-        encodeURIComponent(
-          "Name: " +
-          result.name +
-          "\n" +
-          "Email: " +
-          result.email +
-          "\n\n" +
-          result.message
-        );
-
-
-      window.location.href =
-        "mailto:" +
-        CONTACT_EMAIL +
-        "?subject=" +
-        subject +
-        "&body=" +
-        body;
-
-
-      status.textContent =
-        "Opening your email application...";
-    }
-  );
-
-})();
-
-
+}
 /* ==========================================================
    6. FOOTER YEAR
    ========================================================== */

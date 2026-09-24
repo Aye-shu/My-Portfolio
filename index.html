@@ -68,7 +68,7 @@
 
   <header class="site-header">
 
-    <a class="brand" href="#home" aria-label="Your Name, back to top">
+    <a class="brand" href="#home" aria-label="Ayesha Akther Ishika, back to top">
       <span class="brand-icon">AAI</span>
       <span>Ayesha</span>
     </a>
@@ -1209,11 +1209,11 @@
             <strong>LinkedIn</strong>
 
             <a
-              href="https://www.linkedin.com/in/YOUR-LINKEDIN"
+              href="https://www.linkedin.com/in/ayesha-ishika-94a551418"
               target="_blank"
               rel="noopener"
             >
-              linkedin.com/in/YOUR-LINKEDIN
+              linkedin.com/in/ayesha-ishika-94a551418
             </a>
 
           </div>
@@ -1243,106 +1243,114 @@
 
     <!-- Contact form -->
 
+    <!-- =========================
+     CONTACT FORM
+========================= -->
+
+<div class="contact-form-wrapper">
+
     <form id="contact-form" novalidate>
 
-      <div class="field">
+        <!-- Name -->
+        <div class="form-group">
+            <label for="name">Your name</label>
 
-        <label for="name">
-          Your name
-        </label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your name"
+                required
+            >
 
+            <small class="form-error" id="name-error"></small>
+        </div>
+
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="email">Your email</label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+            >
+
+            <small class="form-error" id="email-error"></small>
+        </div>
+
+
+        <!-- Message -->
+        <div class="form-group">
+            <label for="message">Message</label>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="5"
+                maxlength="500"
+                placeholder="Write your message..."
+                required
+            ></textarea>
+
+            <div class="message-bottom">
+                <small class="form-error" id="message-error"></small>
+
+                <span class="character-count">
+                    <span id="character-count">0</span> / 500
+                </span>
+            </div>
+        </div>
+
+
+        <!-- Subject sent to your email -->
         <input
-          id="name"
-          name="name"
-          type="text"
-          autocomplete="name"
-          required
-          aria-describedby="name-error"
-          placeholder="Enter your name"
+            type="hidden"
+            name="_subject"
+            value="New Portfolio Contact Message"
         >
 
-        <p
-          class="error"
-          id="name-error"
-        ></p>
 
-      </div>
-
-
-      <div class="field">
-
-        <label for="email">
-          Your email
-        </label>
-
+        <!-- Honeypot anti-spam field -->
         <input
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="email"
-          required
-          aria-describedby="email-error"
-          placeholder="you@example.com"
+            type="text"
+            name="_gotcha"
+            class="hidden-field"
+            tabindex="-1"
+            autocomplete="off"
         >
 
-        <p
-          class="error"
-          id="email-error"
-        ></p>
 
-      </div>
-
-
-      <div class="field">
-
-        <label for="message">
-          Message
-        </label>
-
-        <textarea
-          id="message"
-          name="message"
-          maxlength="500"
-          required
-          aria-describedby="message-error message-count"
-          placeholder="Tell me about an opportunity, research idea or project..."
-        ></textarea>
-
-        <p
-          class="error"
-          id="message-error"
-        ></p>
-
-        <p
-          class="hint"
-          id="message-count"
+        <!-- Submit button -->
+        <button
+            type="submit"
+            class="contact-submit-btn"
+            id="contact-submit"
         >
-          0 / 500
-        </p>
+            <span id="submit-text">Send message</span>
+            <span id="submit-arrow">↗</span>
+        </button>
 
-      </div>
 
-
-      <button
-        class="btn btn-primary"
-        type="submit"
-      >
-        Send message
-        <span>↗</span>
-      </button>
-
-      <p
-        class="form-status"
-        id="form-status"
-        role="status"
-      ></p>
+        <!-- Status message -->
+        <p
+            class="form-status"
+            id="form-status"
+            aria-live="polite"
+        ></p>
 
     </form>
 
+</div>
 
   </div>
 
 </section>
+
+</main>
 
 
 <!-- ================= FOOTER ================= -->
@@ -1367,9 +1375,6 @@
   </p>
 
 </footer>
-
-
-</main>
 
 
 <script src="script.js"></script>
