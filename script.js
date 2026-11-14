@@ -582,3 +582,18 @@ if (contactForm) {
   }
 
 })();
+
+/* ==========================================================
+   SMART URL FILTER 
+   ========================================================== */
+document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+
+    if (filterParam) {
+        const targetButton = document.querySelector(`.filter-btn[data-filter="${filterParam}"]`);
+        if (targetButton) {
+            targetButton.click();
+        }
+    }
+});

@@ -409,27 +409,6 @@ svg {
 }
 
 
-.site-nav a {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 0.7rem;
-
-  padding: 0.65rem 0.8rem;
-
-  border-radius: 12px;
-
-  color: var(--muted);
-
-  font-weight: 650;
-
-  text-decoration: none;
-
-  transition:
-    0.25s ease;
-}
 
 
 .site-nav a:hover {
@@ -661,9 +640,20 @@ svg {
   }
 
 
-  .site-nav a {
-    padding: 0.85rem 0.9rem;
-  }
+ .site-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Fixes the huge gap between number and text */
+  gap: 0.7rem;
+  width: 100%; /* Keeps the white box inside the sidebar */
+  box-sizing: border-box;
+  padding: 0.65rem 0.8rem;
+  border-radius: 12px;
+  color: var(--muted);
+  font-weight: 650;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
 
 
   .header-actions {
@@ -1324,6 +1314,7 @@ main {
   display: flex;
 
   align-items: flex-start;
+  justify-content: flex-start;
 
   gap: 1.25rem;
 
