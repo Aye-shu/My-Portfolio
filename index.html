@@ -2,40 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ayesha Akther Ishika| Personal Portfolio</title>
-
-  <meta
-    name="description"
-    content="Personal portfolio of Ayesha Akther Ishika - web developer and university student."
-  >
-
+  <title>Ayesha Akther Ishika | Software Developer & IT Professional</title>
+  <meta name="description" content="Computer Science Student specializing in Full-Stack Development, Data Analytics, and Secure Systems. Explore my software engineering projects and research.">
   <meta name="theme-color" content="#ffafcc">
 
-  <link
-    rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ffafcc'/%3E%3Ctext x='32' y='43' font-size='28' font-family='Arial' font-weight='700' text-anchor='middle' fill='%235b3041'%3EYN%3C/text%3E%3C/svg%3E"
-  >
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ffafcc'/%3E%3Ctext x='32' y='43' font-size='28' font-family='Arial' font-weight='700' text-anchor='middle' fill='%235b3041'%3EYN%3C/text%3E%3C/svg%3E">
 
   <!-- Prevent theme flash -->
   <script>
     (function () {
       const root = document.documentElement;
-
       root.classList.add("js");
-
       try {
         let theme = localStorage.getItem("portfolio-theme");
-
         if (!theme) {
-          theme =
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         }
-
         root.setAttribute("data-theme", theme);
       } catch (error) {
         root.setAttribute("data-theme", "light");
@@ -46,11 +30,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -65,9 +45,7 @@
   <a class="skip" href="#main">Skip to main content</a>
 
   <!-- ================= HEADER / SIDEBAR ================= -->
-
   <header class="site-header">
-
     <a class="brand" href="#home" aria-label="Ayesha Akther Ishika, back to top">
       <span class="brand-icon">AAI</span>
       <span>Ayesha</span>
@@ -76,1308 +54,528 @@
     <div class="sidebar-line"></div>
 
     <nav id="site-nav" class="site-nav" aria-label="Main navigation">
-
       <ul>
-
-        <li>
-          <a href="#home">
-            <span class="nav-number">01</span>
-            <span>Home</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#about">
-            <span class="nav-number">02</span>
-            <span>About</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#skills">
-            <span class="nav-number">03</span>
-            <span>Skills</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#projects">
-            <span class="nav-number">04</span>
-            <span>Projects</span>
-          </a>
-        </li>
-
-        <!-- NEW: RESEARCH -->
-        <li>
-          <a href="#research">
-            <span class="nav-number">05</span>
-            <span>Research</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#experience">
-            <span class="nav-number">06</span>
-            <span>Experience</span>
-          </a>
-        </li>
-
-        <!-- NEW: ACHIEVEMENTS -->
-        <li>
-          <a href="#achievements">
-            <span class="nav-number">07</span>
-            <span>Achievements</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#contact">
-            <span class="nav-number">08</span>
-            <span>Contact</span>
-          </a>
-        </li>
-
+        <li><a href="#home"><span class="nav-number">01</span><span>Home</span></a></li>
+        <li><a href="#about"><span class="nav-number">02</span><span>About</span></a></li>
+        <li><a href="#skills"><span class="nav-number">03</span><span>Skills</span></a></li>
+        <li><a href="#projects"><span class="nav-number">04</span><span>Projects</span></a></li>
+        <li><a href="#research"><span class="nav-number">05</span><span>Research</span></a></li>
+        <li><a href="#experience"><span class="nav-number">06</span><span>Experience</span></a></li>
+        <li><a href="#achievements"><span class="nav-number">07</span><span>Achievements</span></a></li>
+        <li><a href="#contact"><span class="nav-number">08</span><span>Contact</span></a></li>
       </ul>
-
     </nav>
 
     <div class="header-actions">
-
-      <button
-        id="theme-toggle"
-        class="theme-toggle"
-        type="button"
-        aria-pressed="false"
-      >
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
         <span class="switch" aria-hidden="true"></span>
         <span>Dark mode</span>
       </button>
-
-      <button
-        id="menu-toggle"
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="site-nav"
-      >
-        ☰
-      </button>
-
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">☰</button>
     </div>
-
   </header>
 
 
   <!-- ================= MAIN ================= -->
-
   <main id="main">
 
     <!-- ================= HERO ================= -->
-
-    <section
-      id="home"
-      class="hero glass-section"
-      aria-labelledby="hero-title"
-    >
-
+    <section id="home" class="hero glass-section" aria-labelledby="hero-title">
       <div class="hero-content">
-
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
           Available for opportunities
         </div>
-
-        <p class="hero-small-title">
-          Hello, I'm
-        </p>
-
+        <p class="hero-small-title">Hello, I'm</p>
         <h1 id="hero-title">
           <span>Ayesha Akther</span>
           <span class="hero-name">Ishika<span class="pink-dot">.</span></span>
         </h1>
 
         <p class="hero-role">
-          Cybersecurity Student · Aspiring Security Professional · Researcher
+          Software Developer · IT Professional · AI & Security Researcher
         </p>
 
         <p class="hero-lead">
-         I am a cybersecurity-focused university student interested in
-  malware analysis, ransomware detection, network security and
-  machine learning for cybersecurity. I enjoy learning how
-  security threats work and exploring technologies that can help
-  detect and prevent them.
+          I am a final-year Computer Science student specializing in full-stack web development, data analytics, and secure systems. I enjoy building scalable applications, analyzing data, and solving complex IT problems using modern technologies.
         </p>
 
-       <div class="hero-actions">
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">
+            Explore My Work <span>↗</span>
+          </a>
+          <a class="btn btn-ghost" href="#contact">Let's Talk</a>
+          <!-- UPDATE THIS LINK TO YOUR NEW RESUME LATER -->
+          <a class="btn btn-ghost" href="documents/Ayesha_Akther_CV.pdf" target="_blank" rel="noopener">
+            View CV <span>↗</span>
+          </a>
+        </div>
 
-  <a class="btn btn-primary" href="#projects">
-    Explore My Work
-    <span>↗</span>
-  </a>
-
-  <a class="btn btn-ghost" href="#contact">
-    Let's Talk
-  </a>
-
-  <a
-    class="btn btn-ghost"
-    href="documents/Ayesha_Akther_CV.pdf"
-    target="_blank"
-    rel="noopener"
-  >
-    View CV
-    <span>↗</span>
-  </a>
-
-</div>
         <div class="hero-social-text">
           <span>Scroll to explore</span>
           <span class="scroll-line"></span>
         </div>
-
       </div>
 
-
       <!-- Hero visual -->
-
       <div class="hero-visual">
-
         <div class="hero-circle"></div>
-
         <div class="hero-card">
-
           <div class="hero-card-top">
             <span class="mini-label">PORTFOLIO</span>
             <span class="mini-heart">♡</span>
           </div>
-
-          <div class="avatar-large">
-            AAI
-          </div>
-
+          <div class="avatar-large">AAI</div>
           <h2>Ayesha</h2>
-
-          <p>
-  Cybersecurity Student
-          </p>
-
+          <p>Software Developer</p>
           <div class="hero-card-bottom">
-
             <div>
-              <strong>Security</strong>
-               <span>ML · Networks</span>
+              <strong>Full-Stack</strong>
+              <span>Web · Data · AI</span>
             </div>
-
-            <div class="card-arrow">
-              ↗
-            </div>
-
+            <div class="card-arrow">↗</div>
           </div>
-
         </div>
 
-        <div class="floating-badge badge-one">
-          ✦ Creative
-        </div>
-
-        <div class="floating-badge badge-two">
-          ♡ Security
-        </div>
-
+        <div class="floating-badge badge-one">✦ Developer</div>
+        <div class="floating-badge badge-two">♡ Problem Solver</div>
       </div>
-
     </section>
 
 
     <!-- ================= ABOUT ================= -->
-
-    <section
-      id="about"
-      class="section glass-section"
-      aria-labelledby="about-title"
-    >
-
+    <section id="about" class="section glass-section" aria-labelledby="about-title">
       <div class="section-heading">
-
         <span class="section-number">02</span>
-
         <div>
           <p class="section-label">GET TO KNOW ME</p>
           <h2 id="about-title">About me<span class="heading-dot">.</span></h2>
         </div>
-
       </div>
 
       <div class="about">
-
         <div class="about-visual">
-
           <div class="about-frame">
-
-            <div class="avatar">
-              AAI
-            </div>
-
+            <div class="avatar">AAI</div>
             <span class="about-decoration">♡</span>
-
           </div>
-
         </div>
 
-
         <div class="about-content">
-
           <p class="about-intro">
-            I'm <strong>Ayesha Akther Ishika</strong>, a university student
-  building my career in cybersecurity and information security.
+            I'm <strong>Ayesha Akther Ishika</strong>, a final-year Computer Science student passionate about software engineering and IT solutions.
           </p>
-
           <p>
-             I am interested in understanding cybersecurity threats,
-  analyzing malicious behavior and exploring techniques for
-  detecting and preventing cyber attacks.
+            I have hands-on experience building full-stack web applications, designing machine learning models, and analyzing data dashboards. I am highly adaptable and enjoy learning new technologies to solve real-world problems.
           </p>
-
           <p>
-             My current interests include malware analysis, ransomware
-  detection, network security, machine learning for cybersecurity
-  and security research. I am continuously developing my technical
-  skills through academic projects, research and hands-on practice.
+            My technical background spans across Web Development (Node.js, Flask), Databases (MongoDB, MySQL), and Data Analytics. I am currently completing my final-year thesis on AI-based threat detection, which has strengthened my research and problem-solving skills. I am eager to apply these skills in a professional IT or Software Engineering role.
           </p>
 
           <div class="about-info">
-
-            <div>
-              <span>Name</span>
-              <strong>Ayesha Akther Ishika</strong>
-            </div>
-
-            <div>
-              <span>Degree</span>
-              <strong>B.Sc. in Computer Science & Engineering</strong>
-            </div>
-
-            <div>
-              <span>University</span>
-              <strong>Southeast University</strong>
-            </div>
-
-            <div>
-              <span>Location</span>
-              <strong>Dhaka, Bangladesh</strong>
-            </div>
-
-            <div>
-    <span>Career Focus</span>
-    <strong>Cybersecurity</strong>
-  </div>
-
+            <div><span>Name</span><strong>Ayesha Akther Ishika</strong></div>
+            <div><span>Degree</span><strong>B.Sc. in Computer Science & Engineering</strong></div>
+            <div><span>University</span><strong>Southeast University</strong></div>
+            <div><span>Location</span><strong>Dhaka, Bangladesh</strong></div>
+            <div><span>Career Focus</span><strong>Software Engineering & IT Solutions</strong></div>
           </div>
-
         </div>
-
       </div>
-
     </section>
 
 
     <!-- ================= SKILLS ================= -->
-
-    <section
-  id="skills"
-  class="section glass-section"
-  aria-labelledby="skills-title"
->
-
-  <div class="section-heading">
-
-    <span class="section-number">03</span>
-
-    <div>
-      <p class="section-label">WHAT I CAN DO</p>
-      <h2 id="skills-title">Skills<span class="heading-dot">.</span></h2>
-    </div>
-
-  </div>
-
-
-  <div class="skills-grid">
-
-    <div class="skills-column">
-
-      <h3>My toolkit</h3>
-
-
-      <div class="skill-item">
-
-        <div class="skill-top">
-          <span>Cybersecurity Fundamentals</span>
-          <span>Intermediate</span>
+    <section id="skills" class="section glass-section" aria-labelledby="skills-title">
+      <div class="section-heading">
+        <span class="section-number">03</span>
+        <div>
+          <p class="section-label">WHAT I CAN DO</p>
+          <h2 id="skills-title">Skills<span class="heading-dot">.</span></h2>
         </div>
-
-        <div class="skill-bar">
-          <span style="width: 75%"></span>
-        </div>
-
       </div>
 
+      <div class="skills-grid">
+        <div class="skills-column">
+          <h3>My toolkit</h3>
 
-      <div class="skill-item">
+          <div class="skill-item">
+            <div class="skill-top"><span>Node.js & Express</span><span>Intermediate</span></div>
+            <div class="skill-bar"><span style="width: 75%"></span></div>
+          </div>
 
-        <div class="skill-top">
-          <span>Computer Networking</span>
-          <span>Intermediate</span>
+          <div class="skill-item">
+            <div class="skill-top"><span>Python & Flask</span><span>Intermediate</span></div>
+            <div class="skill-bar"><span style="width: 75%"></span></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-top"><span>Java</span><span>Intermediate</span></div>
+            <div class="skill-bar"><span style="width: 70%"></span></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-top"><span>HTML5, CSS3 & JavaScript</span><span>Intermediate</span></div>
+            <div class="skill-bar"><span style="width: 75%"></span></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-top"><span>SQL & MongoDB</span><span>Intermediate</span></div>
+            <div class="skill-bar"><span style="width: 70%"></span></div>
+          </div>
         </div>
 
-        <div class="skill-bar">
-          <span style="width: 75%"></span>
+        <div class="skills-card">
+          <span class="skills-card-icon">✦</span>
+          <h3>Currently learning</h3>
+          <ul class="skill-list">
+            <li><span>01</span> Full-Stack Architecture</li>
+            <li><span>02</span> Data Analytics & Power BI</li>
+            <li><span>03</span> Cloud Computing Basics</li>
+            <li><span>04</span> Advanced Cybersecurity</li>
+          </ul>
         </div>
-
       </div>
-
-
-      <div class="skill-item">
-
-        <div class="skill-top">
-          <span>Python</span>
-          <span>Basic</span>
-        </div>
-
-        <div class="skill-bar">
-          <span style="width: 60%"></span>
-        </div>
-
-      </div>
-
-
-      <div class="skill-item">
-
-        <div class="skill-top">
-          <span>Java</span>
-          <span>Intermediate</span>
-        </div>
-
-        <div class="skill-bar">
-          <span style="width: 70%"></span>
-        </div>
-
-      </div>
-
-
-      <div class="skill-item">
-
-        <div class="skill-top">
-          <span>HTML5 & CSS3</span>
-          <span>Intermediate</span>
-        </div>
-
-        <div class="skill-bar">
-          <span style="width: 75%"></span>
-        </div>
-
-      </div>
-
-
-      <div class="skill-item">
-
-        <div class="skill-top">
-          <span>JavaScript</span>
-          <span>Basic</span>
-        </div>
-
-        <div class="skill-bar">
-          <span style="width: 60%"></span>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="skills-card">
-
-      <span class="skills-card-icon">✦</span>
-
-      <h3>Currently learning</h3>
-
-      <ul class="skill-list">
-
-        <li>
-          <span>01</span>
-          Linux & Command Line
-        </li>
-
-        <li>
-          <span>02</span>
-          Network Security
-        </li>
-
-        <li>
-          <span>03</span>
-          Malware & Ransomware Detection
-        </li>
-
-        <li>
-          <span>04</span>
-          Machine Learning for Cybersecurity
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
-
-</section>
+    </section>
 
 
     <!-- ================= PROJECTS ================= -->
-
-    <section
-  id="projects"
-  class="section glass-section"
-  aria-labelledby="projects-title"
->
-
-  <div class="section-heading">
-
-    <span class="section-number">04</span>
-
-    <div>
-      <p class="section-label">MY RECENT WORK</p>
-
-      <h2 id="projects-title">
-        Selected projects<span class="heading-dot">.</span>
-      </h2>
-    </div>
-
-  </div>
-
-
-  <div
-    class="filters"
-    role="group"
-    aria-label="Filter projects"
-  >
-
-    <button
-      class="filter-btn"
-      type="button"
-      data-filter="all"
-      aria-pressed="true"
-    >
-      All
-    </button>
-
-    <button
-      class="filter-btn"
-      type="button"
-      data-filter="web-app"
-      aria-pressed="false"
-    >
-      Web Projects
-    </button>
-
-    <button
-      class="filter-btn"
-      type="button"
-      data-filter="security"
-      aria-pressed="false"
-    >
-      Cybersecurity
-    </button>
-
-  </div>
-
-  <p
-    id="filter-status"
-    class="sr-only"
-    role="status"
-  ></p>
-
-
-  <div class="project-grid">
-
-
-    <!-- Project 1: UniBus Website -->
-
-    <article
-      class="project project--featured"
-      data-category="web-app"
-    >
-
-      <div class="project-image project-image-one">
-
-        <span>01</span>
-
-        <div class="project-shape">
-          BUS
+    <section id="projects" class="section glass-section" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <span class="section-number">04</span>
+        <div>
+          <p class="section-label">MY RECENT WORK</p>
+          <h2 id="projects-title">Selected projects<span class="heading-dot">.</span></h2>
         </div>
-
       </div>
 
-
-      <div class="project-content">
-
-        <span class="project-type">
-          WEB APPLICATION
-        </span>
-
-        <h3>UniBus Website</h3>
-
-        <p>
-          A university bus management website designed to help
-          students view bus information, choose suitable trips
-          and access campus transportation services easily.
-        </p>
-
-        <ul class="project-meta">
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>Academic Project</li>
-        </ul>
-
-        <div class="project-links">
-
-          <a href="https://github.com/Aye-shu/uni.git">
-            Source code ↗
-          </a>
-
-          <a href="https://uni-e7l7.onrender.com/">
-            Live demo ↗
-          </a>
-
-        </div>
-
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" type="button" data-filter="web-app" aria-pressed="false">Web Dev</button>
+        <button class="filter-btn" type="button" data-filter="security" aria-pressed="false">Cybersecurity</button>
+        <button class="filter-btn" type="button" data-filter="data" aria-pressed="false">Data Analytics</button>
       </div>
 
-    </article>
+      <p id="filter-status" class="sr-only" role="status"></p>
 
+      <div class="project-grid">
 
-    <!-- Project 2: Linux Security Lab Practice -->
+        <!-- PROJECT 1: UniBus (Web Dev) -->
+        <article class="project project--featured" data-category="web-app">
+          <div class="project-image project-image-one">
+            <span>01</span>
+            <div class="project-shape">BUS</div>
+          </div>
+          <div class="project-content">
+            <span class="project-type">FULL-STACK APPLICATION</span>
+            <h3>UniBus Management System</h3>
+            <p>
+              A full-stack university bus management platform designed to eliminate overbooking. Features role-based access and real-time tracking to help students and drivers manage campus transportation.
+            </p>
+            <ul class="project-meta">
+              <li>Node.js</li><li>Express</li><li>MongoDB</li><li>Socket.io</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Aye-shu/uni.git" target="_blank">Source code ↗</a>
+              <a href="https://uni-e7l7.onrender.com/" target="_blank">Live demo ↗</a>
+            </div>
+          </div>
+        </article>
 
-    <article
-      class="project"
-      data-category="security"
-    >
+        <!-- PROJECT 2: PhishTrace (Cybersecurity / AI) -->
+        <article class="project" data-category="security">
+          <div class="project-image project-image-two">
+            <span>02</span>
+            <div class="project-shape">SHIELD</div>
+          </div>
+          <div class="project-content">
+            <span class="project-type">MACHINE LEARNING / SECURITY</span>
+            <h3>PhishTrace Platform</h3>
+            <p>
+              Engineered a multi-layered threat detection engine using a Random Forest classifier (97.5% accuracy). Built a real-time Flask REST API and Chrome extension to analyze web traffic and generate automated HTML forensic reports.
+            </p>
+            <ul class="project-meta">
+              <li>Python</li><li>Scikit-Learn</li><li>Flask</li><li>Kali Linux</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Aye-shu" target="_blank">Source code ↗</a>
+            </div>
+          </div>
+        </article>
 
-      <div class="project-image project-image-two">
+        <!-- PROJECT 3: Data Dashboard (Data Analytics) -->
+        <article class="project" data-category="data">
+          <div class="project-image project-image-three">
+            <span>03</span>
+            <div class="project-shape">DATA</div>
+          </div>
+          <div class="project-content">
+            <span class="project-type">DATA ANALYTICS</span>
+            <h3>Academic Performance Dashboard</h3>
+            <p>
+              Designed an interactive Power BI dashboard to analyze academic performance across multiple university departments over a 3-year period. Cleaned and transformed raw data using SQL to identify key performance trends.
+            </p>
+            <ul class="project-meta">
+              <li>Power BI</li><li>SQL</li><li>Data Cleaning</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Aye-shu" target="_blank">View Project ↗</a>
+            </div>
+          </div>
+        </article>
 
-        <span>02</span>
-
-        <div class="project-shape">
-          LINUX
-        </div>
-
-      </div>
-
-
-      <div class="project-content">
-
-        <span class="project-type">
-          CYBERSECURITY LAB
-        </span>
-
-        <h3>Linux Security Lab Practice</h3>
-
-        <p>
-          Hands-on Linux security practice covering basic
-          security commands, system administration, permissions,
-          users, processes and security-related activities.
-        </p>
-
-        <ul class="project-meta">
-          <li>Linux</li>
-          <li>Command Line</li>
-          <li>Security</li>
-          <li>Lab Practice</li>
-        </ul>
-
-        <div class="project-links">
-
-          <a href="https://github.com/Aye-shu/linux-security-labs">
-            Lab work ↗
-          </a>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- Project 3: Personal Portfolio -->
-
-    <article
-      class="project"
-      data-category="web-app"
-    >
-
-      <div class="project-image project-image-three">
-
-        <span>03</span>
-
-        <div class="project-shape">
-          PORTFOLIO
-        </div>
-
-      </div>
-
-
-      <div class="project-content">
-
-        <span class="project-type">
-          PERSONAL PROJECT
-        </span>
-
-        <h3>My Personal Portfolio</h3>
-
-        <p>
-          A responsive personal portfolio website created to
-          showcase my academic projects, cybersecurity interests,
-          research work, technical skills and achievements.
-        </p>
-
-        <ul class="project-meta">
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>Responsive Design</li>
-        </ul>
-
-        <div class="project-links">
-
-          <a href="https://github.com/Aye-shu/My-Portfolio.git">
-            Source code ↗
-          </a>
-
-          <a href="https://aye-shu.github.io/My-Portfolio/">
-            Live demo ↗
-          </a>
-
-        </div>
+        <!-- PROJECT 4: Portfolio (Web Dev) -->
+        <article class="project" data-category="web-app">
+          <div class="project-image project-image-one">
+            <span>04</span>
+            <div class="project-shape">WEB</div>
+          </div>
+          <div class="project-content">
+            <span class="project-type">FRONTEND DEVELOPMENT</span>
+            <h3>My Personal Portfolio</h3>
+            <p>
+              A responsive personal portfolio website created to showcase my academic projects, research work, technical skills and achievements.
+            </p>
+            <ul class="project-meta">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive Design</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Aye-shu/My-Portfolio.git" target="_blank">Source code ↗</a>
+              <a href="https://aye-shu.github.io/My-Portfolio/" target="_blank">Live demo ↗</a>
+            </div>
+          </div>
+        </article>
 
       </div>
-
-    </article>
-
-
-  </div>
-
-</section>
+    </section>
 
 
     <!-- ================= RESEARCH / THESIS ================= -->
-
-    <section
-      id="research"
-      class="section glass-section"
-      aria-labelledby="research-title"
-    >
-
+    <section id="research" class="section glass-section" aria-labelledby="research-title">
       <div class="section-heading">
-
         <span class="section-number">05</span>
-
         <div>
           <p class="section-label">RESEARCH & THESIS</p>
-
-          <h2 id="research-title">
-            Research / Thesis<span class="heading-dot">.</span>
-          </h2>
-
+          <h2 id="research-title">Research / Thesis<span class="heading-dot">.</span></h2>
         </div>
-
       </div>
-
 
       <div class="skills-grid">
-
-        <!-- Thesis -->
-
         <div class="skills-column">
-
           <h3>Thesis</h3>
-
-          <p>
-            <strong>Ransomware Detection using AI</strong>
-          </p>
-
-          <p>
-           My final-year research focuses on developing an adaptive
-        ransomware detection using AI. 
-          </p>
-
+          <p><strong>Ransomware Detection using AI</strong></p>
+          <p>My final-year research focuses on developing an adaptive ransomware detection using AI.</p>
         </div>
-
-
-        <!-- Research Interests -->
 
         <div class="skills-card">
-
           <span class="skills-card-icon">✦</span>
-
           <h3>Research Interests</h3>
-
           <ul class="skill-list">
-
-            <li>
-              <span>01</span>
-              Cybersecurity
-            
-            </li>
-
-            <li>
-              <span>02</span>
-              Machine Learning
-            </li>
-
-            <li>
-              <span>03</span>
-             Deep Learning
-            </li>
-
-
+            <li><span>01</span> Cybersecurity</li>
+            <li><span>02</span> Machine Learning</li>
+            <li><span>03</span> Deep Learning</li>
           </ul>
-
         </div>
-
       </div>
-
-
-      <!-- Research Skills -->
 
       <div class="skills-column research-skills">
-
         <h3>Research Skills</h3>
-
         <ul class="skill-list">
-
-          <li>
-            <span>01</span>
-            Literature Review
-          </li>
-
-          <li>
-            <span>02</span>
-            Research Methodology
-          </li>
-
-          <li>
-            <span>03</span>
-            Data Analysis
-          </li>
-
-          <li>
-            <span>04</span>
-            Technical Documentation
-          </li>
-
+          <li><span>01</span> Literature Review</li>
+          <li><span>02</span> Research Methodology</li>
+          <li><span>03</span> Data Analysis</li>
+          <li><span>04</span> Technical Documentation</li>
         </ul>
-
       </div>
-
     </section>
 
 
     <!-- ================= EXPERIENCE ================= -->
+    <section id="experience" class="section glass-section" aria-labelledby="experience-title">
+      <div class="section-heading">
+        <span class="section-number">06</span>
+        <div>
+          <p class="section-label">MY JOURNEY</p>
+          <h2 id="experience-title">Experience & education<span class="heading-dot">.</span></h2>
+        </div>
+      </div>
 
-    <section
-  id="experience"
-  class="section glass-section"
-  aria-labelledby="experience-title"
->
+      <div class="split">
+        <!-- Education -->
+        <div class="timeline-box">
+          <h3>Education</h3>
+          <ol class="timeline">
+            <li>
+              <time>2023 – Present</time>
+              <strong>B.Sc. in Computer Science & Engineering</strong>
+              <span>Southeast University</span>
+            </li>
+            <li>
+              <time>Previous</time>
+              <strong>Higher Secondary Certificate (HSC)</strong>
+              <span>Dhaka Imperial College</span>
+            </li>
+          </ol>
+        </div>
 
-  <div class="section-heading">
-
-    <span class="section-number">06</span>
-
-    <div>
-      <p class="section-label">MY JOURNEY</p>
-
-      <h2 id="experience-title">
-        Experience & education<span class="heading-dot">.</span>
-      </h2>
-
-    </div>
-
-  </div>
-
-
-  <div class="split">
-
-
-    <!-- Education -->
-
-    <div class="timeline-box">
-
-      <h3>Education</h3>
-
-      <ol class="timeline">
-
-        <li>
-
-          <time>2023 – Present</time>
-
-          <strong>
-            B.Sc. in Computer Science & Engineering
-          </strong>
-
-          <span>
-            Southeast University
-          </span>
-
-        </li>
-
-
-        <li>
-
-          <time>Previous</time>
-
-          <strong>
-            Higher Secondary Certificate (HSC)
-          </strong>
-
-          <span>
-          Dhaka Imperial College
-          </span>
-
-        </li>
-
-      </ol>
-
-    </div>
-
-
-    <!-- Academic & Project Experience -->
-
-    <div class="timeline-box">
-
-      <h3>Academic & Project Experience</h3>
-
-      <ol class="timeline">
-
-        <li>
-
-          <time>2026</time>
-
-          <strong>
-            Cybersecurity Research & Thesis
-          </strong>
-
-          <span>
-            Academic Research — Ransomware Detection
-          </span>
-
-        </li>
-
-
-        <li>
-
-          <time>2026</time>
-
-          <strong>
-            Linux Security Lab Practice
-          </strong>
-
-          <span>
-            Academic Cybersecurity Practice
-          </span>
-
-        </li>
-
-
-        <li>
-
-          <time>2026</time>
-
-          <strong>
-            UniBus Website
-          </strong>
-
-          <span>
-            Academic Web Development Project
-          </span>
-
-        </li>
-
-      </ol>
-
-    </div>
-
-
-  </div>
-
-</section>
+        <!-- Academic & Project Experience -->
+        <div class="timeline-box">
+          <h3>Academic & Project Experience</h3>
+          <ol class="timeline">
+            <li>
+              <time>2024</time>
+              <strong>Cybersecurity Research & Thesis</strong>
+              <span>Academic Research — Ransomware Detection</span>
+            </li>
+            <li>
+              <time>2024</time>
+              <strong>PhishTrace Platform</strong>
+              <span>Machine Learning & API Development</span>
+            </li>
+            <li>
+              <time>2024</time>
+              <strong>UniBus Website</strong>
+              <span>Full-Stack Web Development Project</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
 
 
     <!-- ================= ACHIEVEMENTS & CERTIFICATIONS ================= -->
-
-    <section
-      id="achievements"
-      class="section glass-section"
-      aria-labelledby="achievements-title"
-    >
-
+    <section id="achievements" class="section glass-section" aria-labelledby="achievements-title">
       <div class="section-heading">
-
         <span class="section-number">07</span>
-
         <div>
           <p class="section-label">ACHIEVEMENTS & CERTIFICATIONS</p>
-
-          <h2 id="achievements-title">
-            Achievements & Certifications<span class="heading-dot">.</span>
-          </h2>
-
+          <h2 id="achievements-title">Achievements & Certifications<span class="heading-dot">.</span></h2>
         </div>
-
       </div>
-
-
-      <!-- Course Certificates -->
 
       <div class="skills-grid">
-
         <div class="skills-column">
-
           <h3>Course Certificates</h3>
-
-          <p>
-            Certificates and courses that support my academic,
-            technical and professional development.
-          </p>
-
+          <p>Certificates and courses that support my academic, technical and professional development.</p>
         </div>
-
 
         <div class="skills-card">
-
           <span class="skills-card-icon">✦</span>
-
           <h3>Certificates</h3>
-
           <ul class="skill-list">
-
-            <li>
-  <span>01</span>
-  Introduction to Cybersecurity
-</li>
-
-<li>
-  <span>02</span>
-  Linux Fundamentals
-</li>
-
-<li>
-  <span>03</span>
-  Python Programming
-</li>
-
-<li>
-  <span>04</span>
-  Networking Fundamentals
-</li>
-
+            <li><span>01</span> Introduction to Cybersecurity</li>
+            <li><span>02</span> Linux Fundamentals</li>
+            <li><span>03</span> Python Programming</li>
+            <li><span>04</span> Networking Fundamentals</li>
           </ul>
-
         </div>
-
       </div>
-
     </section>
 
 
     <!-- ================= CONTACT ================= -->
-
-<section
-  id="contact"
-  class="section glass-section contact-section"
-  aria-labelledby="contact-title"
->
-
-  <div class="section-heading">
-
-    <span class="section-number">08</span>
-
-    <div>
-      <p class="section-label">GET IN TOUCH</p>
-
-      <h2 id="contact-title">
-        Let's connect<span class="heading-dot">.</span>
-      </h2>
-
-    </div>
-
-  </div>
-
-
-  <div class="contact-grid">
-
-
-    <div class="contact-intro">
-
-      <div class="contact-heart">
-        ♡
+    <section id="contact" class="section glass-section contact-section" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <span class="section-number">08</span>
+        <div>
+          <p class="section-label">GET IN TOUCH</p>
+          <h2 id="contact-title">Let's connect<span class="heading-dot">.</span></h2>
+        </div>
       </div>
 
-      <h3>
-        Interested in
-        <br>
-        cybersecurity?
-      </h3>
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <div class="contact-heart">♡</div>
+          <h3>Interested in<br>working together?</h3>
+          <p>I'm open to internship opportunities, academic collaboration, research discussions and technology projects. Feel free to get in touch.</p>
 
-      <p>
-        I'm open to internship opportunities, academic
-        collaboration, research discussions and technology
-        projects. Feel free to get in touch.
-      </p>
+          <ul class="contact-list">
+            <!-- Email -->
+            <li>
+              <span class="contact-icon">✉</span>
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:ayeshaishika@gmail.com">ayeshaishika@gmail.com</a>
+              </div>
+            </li>
 
+            <!-- GitHub -->
+            <li>
+              <span class="contact-icon">⌘</span>
+              <div>
+                <strong>GitHub</strong>
+                <a href="https://github.com/Aye-shu" target="_blank" rel="noopener">github.com/Aye-shu</a>
+              </div>
+            </li>
 
-      <ul class="contact-list">
+            <!-- LinkedIn -->
+            <li>
+              <span class="contact-icon">in</span>
+              <div>
+                <strong>LinkedIn</strong>
+                <a href="https://www.linkedin.com/in/ayesha-ishika" target="_blank" rel="noopener">linkedin.com/in/ayesha-ishika-94a551418</a>
+              </div>
+            </li>
 
-
-        <!-- Email -->
-
-        <li>
-
-          <span class="contact-icon">✉</span>
-
-          <div>
-            <strong>Email</strong>
-
-            <a href="mailto:YOUR-EMAIL@example.com">
-              ayeshaishika@gmail.com
-            </a>
-          </div>
-
-        </li>
-
-
-        <!-- GitHub 1 -->
-
-        <li>
-
-          <span class="contact-icon">⌘</span>
-
-          <div>
-            <strong>GitHub</strong>
-
-            <a
-              href="https://github.com/Aye-shu"
-              target="_blank"
-              rel="noopener"
-            >
-              github.com/Aye-shu
-            </a>
-
-          </div>
-
-        </li>
-
-
-        <!-- GitHub 2 -->
-
-        <li>
-
-          <span class="contact-icon">⌘</span>
-
-          <div>
-            <strong>GitHub — Second Account</strong>
-
-            <a
-              href="https://github.com/Ishuuuuuuuuuuuu"
-              target="_blank"
-              rel="noopener"
-            >
-              github.com/Ishuuuuuuuuuuuu
-            </a>
-
-          </div>
-
-        </li>
-
-
-        <!-- LinkedIn -->
-
-        <li>
-
-          <span class="contact-icon">in</span>
-
-          <div>
-            <strong>LinkedIn</strong>
-
-            <a
-              href="https://www.linkedin.com/in/ayesha-ishika-94a551418"
-              target="_blank"
-              rel="noopener"
-            >
-              linkedin.com/in/ayesha-ishika-94a551418
-            </a>
-
-          </div>
-
-        </li>
-
-
-        <!-- Location -->
-
-        <li>
-
-          <span class="contact-icon">⌖</span>
-
-          <div>
-            <strong>Location</strong>
-
-            <span>Dhaka, Bangladesh</span>
-          </div>
-
-        </li>
-
-
-      </ul>
-
-    </div>
-
-
-    <!-- Contact form -->
-
-    <!-- =========================
-     CONTACT FORM
-========================= -->
-
-<div class="contact-form-wrapper">
-
-    <form id="contact-form" novalidate>
-
-        <!-- Name -->
-        <div class="form-group">
-            <label for="name">Your name</label>
-
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Your name"
-                required
-            >
-
-            <small class="form-error" id="name-error"></small>
+            <!-- Location -->
+            <li>
+              <span class="contact-icon">⌖</span>
+              <div>
+                <strong>Location</strong>
+                <span>Dhaka, Bangladesh</span>
+              </div>
+            </li>
+          </ul>
         </div>
 
-
-        <!-- Email -->
-        <div class="form-group">
-            <label for="email">Your email</label>
-
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="your@email.com"
-                required
-            >
-
-            <small class="form-error" id="email-error"></small>
-        </div>
-
-
-        <!-- Message -->
-        <div class="form-group">
-            <label for="message">Message</label>
-
-            <textarea
-                id="message"
-                name="message"
-                rows="5"
-                maxlength="500"
-                placeholder="Write your message..."
-                required
-            ></textarea>
-
-            <div class="message-bottom">
-                <small class="form-error" id="message-error"></small>
-
-                <span class="character-count">
-                    <span id="character-count">0</span> / 500
-                </span>
+        <!-- Contact form -->
+        <div class="contact-form-wrapper">
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+              <small class="form-error" id="name-error"></small>
             </div>
+
+            <div class="form-group">
+              <label for="email">Your email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+              <small class="form-error" id="email-error"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" maxlength="500" placeholder="Write your message..." required></textarea>
+              <div class="message-bottom">
+                <small class="form-error" id="message-error"></small>
+                <span class="character-count"><span id="character-count">0</span> / 500</span>
+              </div>
+            </div>
+
+            <input type="hidden" name="_subject" value="New Portfolio Contact Message">
+            <input type="text" name="_gotcha" class="hidden-field" tabindex="-1" autocomplete="off">
+
+            <button type="submit" class="contact-submit-btn" id="contact-submit">
+              <span id="submit-text">Send message</span>
+              <span id="submit-arrow">↗</span>
+            </button>
+
+            <p class="form-status" id="form-status" aria-live="polite"></p>
+          </form>
         </div>
+      </div>
+    </section>
+  </main>
 
 
-        <!-- Subject sent to your email -->
-        <input
-            type="hidden"
-            name="_subject"
-            value="New Portfolio Contact Message"
-        >
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div>
+      <strong>Ayesha Akther Ishika</strong>
+      <span>Computer Science Student · Software Developer</span>
+    </div>
+    <p>© <span id="year">2024</span> Ayesha Akther Ishika. All rights reserved.</p>
+  </footer>
 
-
-        <!-- Honeypot anti-spam field -->
-        <input
-            type="text"
-            name="_gotcha"
-            class="hidden-field"
-            tabindex="-1"
-            autocomplete="off"
-        >
-
-
-        <!-- Submit button -->
-        <button
-            type="submit"
-            class="contact-submit-btn"
-            id="contact-submit"
-        >
-            <span id="submit-text">Send message</span>
-            <span id="submit-arrow">↗</span>
-        </button>
-
-
-        <!-- Status message -->
-        <p
-            class="form-status"
-            id="form-status"
-            aria-live="polite"
-        ></p>
-
-    </form>
-
-</div>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="site-footer">
-
-  <div>
-
-    <strong>
-      Ayesha Akther Ishika
-    </strong>
-
-    <span>
-      Cybersecurity Student · Researcher
-    </span>
-
-  </div>
-
-  <p>
-    © <span id="year">2026</span>
-    Ayesha Akther Ishika. All rights reserved.
-  </p>
-
-</footer>
-
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
